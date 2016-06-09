@@ -1,9 +1,0 @@
-This document will be used to explain what the functions in the Caleb library do.
-
-Caleb.caleb1(<int>)
-
-This function takes some integer value and then returns to the user whether the integer is even or odd. An error message will appear if the number input is not an integer
-
-Caleb.caleb2(x)
-
-This function does some random math on any inputted number

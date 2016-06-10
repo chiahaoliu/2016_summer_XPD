@@ -8,14 +8,14 @@ which were created to practice proper workflow techniques.
 
 The two modules created are name ``package`` and ``not_package``.
 
-..code-block:: python
+.. code-block:: python
 
-   from __future__ import division, absolute_import, print_function
+    from __future__ import division, absolute_import, print_function
 
-   import os
+    import os
 
-   from matplotlib.pyplot import plot, show
+    from matplotlib.pyplot import plot, show
 
-   import package.Caleb
-   import not_package.Hello_World
+    import package.Caleb
+    import not_package.Hello_World
 

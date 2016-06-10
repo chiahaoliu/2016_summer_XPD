@@ -42,14 +42,81 @@
 <p>This documentation will provide a description of the modules
 which were created to practice proper workflow techniques.</p>
 <p>The two modules created are name <code class="docutils literal"><span class="pre">package</span></code> and <code class="docutils literal"><span class="pre">not_package</span></code>.</p>
-<p>..code-block:: python</p>
-<blockquote>
-<div><p>from __future__ import division, absolute_import, print_function</p>
-<p>import os</p>
-<p>from matplotlib.pyplot import plot, show</p>
-<p>import package.Caleb
-import not_package.Hello_World</p>
-</div></blockquote>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">import</span> <span class="n">plot</span><span class="p">,</span> <span class="n">show</span>
+
+<span class="kn">import</span> <span class="nn">package.Caleb</span>
+<span class="kn">import</span> <span class="nn">not_package.Hello_World</span>
+
+<span class="k">def</span> <span class="nf">caleb1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="sd">r&quot;&quot;&quot; Afunction that tests if a number is even or odd.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        a: float, integer</span>
+<span class="sd">           This value can be any integer or float value that</span>
+<span class="sd">           can reasonably be computed by python. The number</span>
+<span class="sd">           must be of integer value however.</span>
+
+<span class="sd">         Examples</span>
+<span class="sd">         --------</span>
+<span class="sd">         &gt;&gt;&gt;caleb1(1.5)</span>
+<span class="sd">         Please input integer value</span>
+
+<span class="sd">         &gt;&gt;&gt;caleb1(1.0)</span>
+<span class="sd">         No, this is not an even number</span>
+
+<span class="sd">         &gt;&gt;&gt;caleb1(2)</span>
+<span class="sd">         Yes</span>
+
+
+<span class="sd">         &quot;&quot;&quot;</span>
+         <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">caleb2</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="sd">r&quot;&quot;&quot;This function takes some value and then returns it</span>
+<span class="sd">        after processing.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        a: float, integer</span>
+<span class="sd">           This value can be anything that the hardware can</span>
+<span class="sd">           compute</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &gt;&gt;&gt;caleb2(3)</span>
+<span class="sd">        16</span>
+
+<span class="sd">        &gt;&gt;&gt;caleb2(0.5)</span>
+<span class="sd">        26</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">Hello_World</span><span class="p">():</span>
+        <span class="sd">r&quot;&quot;&quot; This program prints out a common programming statement.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        None</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &gt;&gt;&gt;Hello_World()</span>
+<span class="sd">        Hello, World!</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
 </div>
 
 

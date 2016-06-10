@@ -8,7 +8,7 @@ which were created to practice proper workflow techniques.
 
 The two modules created are name ``package`` and ``not_package``.
 
-..ipython:: python
+..code-block:: python
 
    from __future__ import division, absolute_import, print_function
 

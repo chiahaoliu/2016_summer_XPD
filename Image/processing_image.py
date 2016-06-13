@@ -8,7 +8,7 @@ if int(answer) == 1:
 elif int(answer) == 2:
 	IM = imread('2016_summer_XPD/Image/CdSeNP_001.tif')
 else:
-	IM = imread('2016_summer_XPD/ImageNi300K.tif')
+	IM = imread('2016_summer_XPD/Image/Ni300K.tif')
 
 
 imshow(IM)

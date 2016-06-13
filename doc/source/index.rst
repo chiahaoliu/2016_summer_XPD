@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to 2016_summer_XPD's documentation!
+2016_summer_XPD's
 ===========================================
 This project is practice for the data software development being undertaken by
 Caleb Duff and Tim Liu for the 28-ID XPD beamlines at the Brookhaven NSLSII. 
@@ -12,9 +12,12 @@ do not represent the actual software that will be used in further development.
 
 
 Contents:
+The links given will direct the user to the documentation and image directories. 
+These are practice modules and do not represent any final products created. 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    documentation
+   image
 

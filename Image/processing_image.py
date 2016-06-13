@@ -1,6 +1,6 @@
-from matplotlib.pyplot import imread
+from matplotlib.pyplot import imread, imshow
 
 
-IM = imread('2016_summer_XPD/Image/CdSeNP_000.tif')
+IM = imread('2016_summer_XPD/Image/CdSeNP_001.tif')
 
-print(IM)
+imshow(IM)

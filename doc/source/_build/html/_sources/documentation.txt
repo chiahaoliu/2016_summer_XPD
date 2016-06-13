@@ -20,7 +20,7 @@ The two modules created are name ``package`` and ``not_package``.
     import not_package.Hello_World
 
     def caleb1(a):
-    	    r""" Afunction that tests if a number is even or odd.
+    	    r""" A function that tests if a number is even or odd.
 
 	    Parameters
 	    ----------

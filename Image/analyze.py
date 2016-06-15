@@ -4,7 +4,14 @@
 import matplotlib.pyplot as plt
 from tifffile import imread
 
-Cd = imread('2016_summer_XPD/Image/CdSeNP_000.tif')
+answer = int(input('Type 1, 2, or 3 for image: '))
+if answer == 1:
+    Cd = imread('2016_summer_XPD/Image/CdSeNP_000.tif')
+elif answer == 2:
+    Cd = imread('2016_summer_XPD/Image/CdSeNP_001.tif')
+else:
+    Cd = imread('2016_summer_XPD/Image/Ni300K.tif')
+
 
 #This function displays the region observed
 def show_region(rb, re, cb, ce):

@@ -56,9 +56,12 @@ def avg(event):
     for i in range(rowb, rowe + 1):
         for j in range(colb, cole + 1):
             x += pic[i][j]
-    print('The average intensity is ' + str(x/num))
     return x/num, num, rowb, rowe, colb, cole
-button1.on_clicked(avg)
+
+def avg_print(event):
+    avg0, num, rowb, rowe, colb, cole = avg(event)
+    print('The average intensity is ' + str(avg0))
+button1.on_clicked(avg_print)
 
 def stan_dev(event):
     x = 0

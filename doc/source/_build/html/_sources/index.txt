@@ -19,5 +19,5 @@ These are practice modules and do not represent any final products created.
    :maxdepth: 2
 
    documentation
-   image
+   analyze
 

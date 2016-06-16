@@ -7,7 +7,9 @@ from tifffile import imread
 
 fig = plt.figure()
 
-pic = imread('./Image/Ni300K.tif')
+pic1 = imread('./Image/CdSeNP_000.tif')
+pic2 = imread('./Image/CdSeNP_001.tif')
+pic3 = imread('./Image/Ni300K.tif')
 rb0 = 400
 re0 = 600
 cb0 = 400
@@ -15,7 +17,7 @@ ce0 = 600
 axcolor = 'lightgoldenrodyellow'
 
 axpic = plt.subplot2grid( (20,20), (0,0), rowspan = 13, colspan = 13)
-axpic.imshow(pic)
+axpic.imshow(pic3)
 
 axrb = plt.subplot2grid( (20,20), (16,0), rowspan = 1, colspan = 20)
 axre = plt.subplot2grid( (20,20), (17,0), rowspan = 1, colspan = 20)

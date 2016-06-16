@@ -5,32 +5,34 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, RadioButtons
 from tifffile import imread
 
-fig, ax = plt.subplots()
-plt.subplots_adjust(bottom = 0.3)
+fig = plt.figure()
+#fig, ax = plt.subplots()
+#plt.subplots_adjust(bottom = 0.3)
 pic = imread('./Image/Ni300K.tif')
 rb0 = 400
 re0 = 600
 cb0 = 400
 ce0 = 600
-plt.imshow(pic)
 
 axcolor = 'lightgoldenrodyellow'
 
-axrb = plt.axes([0.15,0.2,0.5,0.02], axisbg=axcolor)
-axre = plt.axes([0.15,0.15,0.5,0.02], axisbg=axcolor)
-axcb = plt.axes([0.15,0.1,0.5,0.02], axisbg=axcolor)
-axce = plt.axes([0.15,0.05,0.5,0.02], axisbg=axcolor)
+axpic = plt.subplot2grid((20,20),(0,0),rowspan = 14, colspan = 14)
+axpic.imshow(pic)
+
+axrb = plt.subplot2grid((20,20),(16,0),rowspan = 1, colspan = 20)
+axre = plt.subplot2grid((20,20),(17,0),rowspan = 1, colspan = 20)
+axcb = plt.subplot2grid((20,20),(18,0),rowspan = 1, colspan = 20)
+axce = plt.subplot2grid((20,20),(19,0),rowspan = 1, colspan = 20)
 
 rb = Slider(axrb, 'Row Begin', 0, 2047, valinit=rb0)
 re = Slider(axre, 'Row End', 0, 2047, valinit=re0)
 cb = Slider(axcb, 'Col Begin', 0, 2047, valinit=cb0)
 ce = Slider(axce, 'Col End', 0, 2047, valinit=ce0)
 
-
-avg_ax = plt.axes([0.85,0.2, 0.13, 0.1],axisbg=axcolor)
-std_ax = plt.axes([0.85,0.4, 0.13, 0.1],axisbg=axcolor)
-min_ax = plt.axes([0.85,0.6, 0.13, 0.1],axisbg=axcolor)
-max_ax = plt.axes([0.85,0.8, 0.13, 0.1],axisbg=axcolor)
+avg_ax = plt.subplot2grid((20,20),(0,15),rowspan = 3, colspan = 6)
+std_ax = plt.subplot2grid((20,20),(3,15),rowspan = 3, colspan = 6)
+min_ax = plt.subplot2grid((20,20),(6,15),rowspan = 3, colspan = 6)
+max_ax = plt.subplot2grid((20,20),(9,15),rowspan = 3, colspan = 6)
 
 button1 = Button(avg_ax, 'Average', color=axcolor, hovercolor='0.975')
 button2 = Button(std_ax, 'Stan Dev', color=axcolor, hovercolor='0.975')

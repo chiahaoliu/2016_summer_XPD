@@ -6,13 +6,18 @@ from matplotlib.widgets import Slider, Button, RadioButtons
 from tifffile import imread
 
 fig = plt.figure()
+<<<<<<< HEAD
 #fig, ax = plt.subplots()
 #plt.subplots_adjust(bottom = 0.3)
+=======
+
+>>>>>>> interactive
 pic = imread('./Image/Ni300K.tif')
 rb0 = 400
 re0 = 600
 cb0 = 400
 ce0 = 600
+<<<<<<< HEAD
 
 axcolor = 'lightgoldenrodyellow'
 
@@ -23,16 +28,35 @@ axrb = plt.subplot2grid((20,20),(16,0),rowspan = 1, colspan = 20)
 axre = plt.subplot2grid((20,20),(17,0),rowspan = 1, colspan = 20)
 axcb = plt.subplot2grid((20,20),(18,0),rowspan = 1, colspan = 20)
 axce = plt.subplot2grid((20,20),(19,0),rowspan = 1, colspan = 20)
+=======
+axcolor = 'lightgoldenrodyellow'
+
+axpic = plt.subplot2grid( (20,20), (0,0), rowspan = 13, colspan = 13)
+axpic.imshow(pic)
+
+axrb = plt.subplot2grid( (20,20), (16,0), rowspan = 1, colspan = 20)
+axre = plt.subplot2grid( (20,20), (17,0), rowspan = 1, colspan = 20)
+axcb = plt.subplot2grid( (20,20), (18,0), rowspan = 1, colspan = 20)
+axce = plt.subplot2grid( (20,20), (19,0), rowspan = 1, colspan = 20)
+>>>>>>> interactive
 
 rb = Slider(axrb, 'Row Begin', 0, 2047, valinit=rb0)
 re = Slider(axre, 'Row End', 0, 2047, valinit=re0)
 cb = Slider(axcb, 'Col Begin', 0, 2047, valinit=cb0)
 ce = Slider(axce, 'Col End', 0, 2047, valinit=ce0)
 
+<<<<<<< HEAD
 avg_ax = plt.subplot2grid((20,20),(0,15),rowspan = 3, colspan = 6)
 std_ax = plt.subplot2grid((20,20),(3,15),rowspan = 3, colspan = 6)
 min_ax = plt.subplot2grid((20,20),(6,15),rowspan = 3, colspan = 6)
 max_ax = plt.subplot2grid((20,20),(9,15),rowspan = 3, colspan = 6)
+=======
+
+avg_ax = plt.subplot2grid( (20,20), (0,14), rowspan = 3, colspan = 6)
+std_ax = plt.subplot2grid( (20,20), (3,14), rowspan = 3, colspan = 6)
+min_ax = plt.subplot2grid( (20,20), (6,14), rowspan = 3, colspan = 6)
+max_ax = plt.subplot2grid( (20,20), (9,14), rowspan = 3, colspan = 6)
+>>>>>>> interactive
 
 button1 = Button(avg_ax, 'Average', color=axcolor, hovercolor='0.975')
 button2 = Button(std_ax, 'Stan Dev', color=axcolor, hovercolor='0.975')

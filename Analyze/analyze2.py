@@ -57,7 +57,7 @@ def avg(event):
 
     for i in range(rowb, rowe + 1):
         for j in range(colb, cole + 1):
-            x += pic333[i][j]
+            x += pic3[i][j]
     return x/num, num, rowb, rowe, colb, cole
 
 def avg_print(event):
@@ -70,7 +70,7 @@ def stan_dev(event):
     avg0, num, rowb, rowe, colb, cole = avg(event)
     for i in range(rowb, rowe + 1):
         for j in range(colb, cole + 1):
-            x += (avg0 - pic[i][j])**2
+            x += (avg0 - pic3[i][j])**2
     std = (x/num)**0.5
     print('The standard deviations is ' + str(std))
 button2.on_clicked(stan_dev)
@@ -90,13 +90,13 @@ def get_min(event):
         colb = int(ce.val)
         cole = int(cb.val)
 
-    z = pic[rowb][colb]
+    z = pic3[rowb][colb]
     x = rowb
     y = colb
     for i in range(rowb + 1, rowe + 1):
         for j in range(colb + 1, cole + 1):
-            if pic[i][j] < z:
-                z = pic[i][j]
+            if pic3[i][j] < z:
+                z = pic3[i][j]
                 x = i
                 y = j
     print('The minimum is ' + str(z) + ' at ' + str(x) + 'x' + str(y))
@@ -117,13 +117,13 @@ def get_max(event):
        colb = int(ce.val)
        cole = int(cb.val)
 
-    z = pic[rowb][colb]
+    z = pic3[rowb][colb]
     x = rowb
     y = colb
     for i in range(rowb + 1, rowe + 1):
         for j in range(colb + 1, cole + 1):
-            if pic[i][j] > z:
-                z = pic[i][j]
+            if pic3[i][j] > z:
+                z = pic3[i][j]
                 x = i
                 y = j
     print('The maximum is ' + str(z) + ' at ' + str(x) + 'x' + str(y))

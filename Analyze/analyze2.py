@@ -57,7 +57,7 @@ def avg(event):
 
     for i in range(rowb, rowe + 1):
         for j in range(colb, cole + 1):
-            x += pic[i][j]
+            x += pic333[i][j]
     return x/num, num, rowb, rowe, colb, cole
 
 def avg_print(event):

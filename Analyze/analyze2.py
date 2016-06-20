@@ -7,9 +7,9 @@ from tifffile import imread
 
 fig = plt.figure()
 
-pic1 = imread('./Image/CdSeNP_000.tif')
-pic2 = imread('./Image/CdSeNP_001.tif')
-pic3 = imread('./Image/Ni300K.tif')
+pic1 = imread('./2016_summer_XPD/Image/CdSeNP_000.tif')
+pic2 = imread('./2016_summer_XPD/Image/CdSeNP_001.tif')
+pic3 = imread('./2016_summer_XPD/Image/Ni300K.tif')
 rb0 = 400
 re0 = 600
 cb0 = 400

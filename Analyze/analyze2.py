@@ -135,16 +135,18 @@ def get_max(event):
     print('The maximum is ' + str(z) + ' at ' + str(x) + 'x' + str(y))
 button4.on_clicked(get_max)
 
-def if_moving(event):
-    pass
-rb.on_changed(if_moving)
-re.on_changed(if_moving)
-cb.on_changed(if_moving)
-ce.on_changed(if_moving)
-
 def pic_switch(Event):
+    axpic.cla()
     axpic.imshow(pic_list[int(pic_swap.val)])
+    axpic.axvline(x=rb.val)
+    axpic.axvline(x=re.val)
+    axpic.axhline(y=cb.val)
+    axpic.axhline(y=ce.val)
 pic_swap.on_changed(pic_switch)
+rb.on_changed(pic_switch)
+re.on_changed(pic_switch)
+cb.on_changed(pic_switch)
+ce.on_changed(pic_switch)
 
 pic_switch(None)
 plt.show()

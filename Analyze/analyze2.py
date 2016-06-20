@@ -28,22 +28,22 @@ axre = plt.subplot2grid((20,20),(17,0),rowspan = 1, colspan = 20)
 axcb = plt.subplot2grid((20,20),(18,0),rowspan = 1, colspan = 20)
 axce = plt.subplot2grid((20,20),(19,0),rowspan = 1, colspan = 20)
 
-pic_swap = Slider(axps, 'Pic Index', 0, 2, valinit=0)
+pic_swap = Slider(axps, 'Pic Index', 0, 2.8, valinit=0)
 
 rb = Slider(axrb, 'Row Begin', 0, 2047, valinit=rb0)
 re = Slider(axre, 'Row End', 0, 2047, valinit=re0)
 cb = Slider(axcb, 'Col Begin', 0, 2047, valinit=cb0)
 ce = Slider(axce, 'Col End', 0, 2047, valinit=ce0)
 
-avg_ax = plt.subplot2grid((20,20),(0,15),rowspan = 3, colspan = 6)
-std_ax = plt.subplot2grid((20,20),(3,15),rowspan = 3, colspan = 6)
-min_ax = plt.subplot2grid((20,20),(6,15),rowspan = 3, colspan = 6)
-max_ax = plt.subplot2grid((20,20),(9,15),rowspan = 3, colspan = 6)
+avg_ax = plt.subplot2grid((20,20),(0,14),rowspan = 3, colspan = 3)
+std_ax = plt.subplot2grid((20,20),(0,17),rowspan = 3, colspan = 3)
+min_ax = plt.subplot2grid((20,20),(3,14),rowspan = 3, colspan = 3)
+max_ax = plt.subplot2grid((20,20),(3,17),rowspan = 3, colspan = 3)
 
-button1 = Button(avg_ax, 'Average', color=axcolor, hovercolor='0.975')
-button2 = Button(std_ax, 'Stan Dev', color=axcolor, hovercolor='0.975')
-button3 = Button(min_ax, 'Minimum', color=axcolor, hovercolor='0.975')
-button4 = Button(max_ax, 'Maximum', color=axcolor, hovercolor='0.975')
+button1 = Button(avg_ax, 'Avg', color=axcolor, hovercolor='0.975')
+button2 = Button(std_ax, 'StDv', color=axcolor, hovercolor='0.975')
+button3 = Button(min_ax, 'Min', color=axcolor, hovercolor='0.975')
+button4 = Button(max_ax, 'Max', color=axcolor, hovercolor='0.975')
 
 def avg(event):
     x = 0

@@ -10,19 +10,25 @@ fig = plt.figure()
 pic1 = imread('./2016_summer_XPD/Image/CdSeNP_000.tif')
 pic2 = imread('./2016_summer_XPD/Image/CdSeNP_001.tif')
 pic3 = imread('./2016_summer_XPD/Image/Ni300K.tif')
+pic_list = [pic1, pic2, pic3]
+
 rb0 = 400
 re0 = 600
 cb0 = 400
 ce0 = 600
+
 axcolor = 'lightgoldenrodyellow'
 
 axpic = plt.subplot2grid( (20,20), (0,0), rowspan = 13, colspan = 13)
-axpic.imshow(pic3)
+
+axps = plt.subplot2grid((20,20),(12,16),rowspan = 2, colspan = 6)
 
 axrb = plt.subplot2grid((20,20),(16,0),rowspan = 1, colspan = 20)
 axre = plt.subplot2grid((20,20),(17,0),rowspan = 1, colspan = 20)
 axcb = plt.subplot2grid((20,20),(18,0),rowspan = 1, colspan = 20)
 axce = plt.subplot2grid((20,20),(19,0),rowspan = 1, colspan = 20)
+
+pic_swap = Slider(axps, 'Pic Index', 0, 2, valinit=0)
 
 rb = Slider(axrb, 'Row Begin', 0, 2047, valinit=rb0)
 re = Slider(axre, 'Row End', 0, 2047, valinit=re0)
@@ -136,4 +142,9 @@ re.on_changed(if_moving)
 cb.on_changed(if_moving)
 ce.on_changed(if_moving)
 
+def pic_switch(Event):
+    axpic.imshow(pic_list[int(pic_swap.val)])
+pic_swap.on_changed(pic_switch)
+
+pic_switch(None)
 plt.show()

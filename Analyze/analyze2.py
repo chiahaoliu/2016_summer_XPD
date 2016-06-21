@@ -191,7 +191,6 @@ def get_StDv_list():
     return stdv_list
 
 def new_plot(Event):
-    print(Event)
     fig2 = plt.figure(2)
     x = np.arange(0, len(pic_list), 1.0)
     if Event == 'Plot Avg':

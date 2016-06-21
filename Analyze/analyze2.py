@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, RadioButtons
 from tifffile import imread
+import numpy as np
 
 fig = plt.figure(1)
 
@@ -44,6 +45,10 @@ button1 = Button(avg_ax, 'Avg', color=axcolor, hovercolor='0.975')
 button2 = Button(std_ax, 'StDv', color=axcolor, hovercolor='0.975')
 button3 = Button(min_ax, 'Min', color=axcolor, hovercolor='0.975')
 button4 = Button(max_ax, 'Max', color=axcolor, hovercolor='0.975')
+
+axnew = plt.subplot2grid((20,20),(6,14),rowspan = 5, colspan = 6)
+
+plot_new = RadioButtons(axnew, ('Plot Avg', 'Plot StDv', 'Clear'))
 
 def avg(event):
     x = 0
@@ -111,17 +116,17 @@ button3.on_clicked(get_min)
 def get_max(event):
 
     if rb.val < re.val:
-       rowb = int(rb.val)
-       rowe = int(re.val)
+        rowb = int(rb.val)
+        rowe = int(re.val)
     else:
-       rowb = int(re.val)
-       rowe = int(rb.val)
+        rowb = int(re.val)
+        rowe = int(rb.val)
     if cb.val < ce.val:
-       colb = int(cb.val)
-       cole = int(ce.val)
+        colb = int(cb.val)
+        cole = int(ce.val)
     else:
-       colb = int(ce.val)
-       cole = int(cb.val)
+        colb = int(ce.val)
+        cole = int(cb.val)
 
     z =  pic_list[int(pic_swap.val)][rowb][colb]
     x = rowb
@@ -147,6 +152,59 @@ rb.on_changed(pic_switch)
 re.on_changed(pic_switch)
 cb.on_changed(pic_switch)
 ce.on_changed(pic_switch)
+
+def get_avg_list():
+    if rb.val < re.val:
+        rowb = int(rb.val)
+        rowe = int(re.val)
+    else:
+        rowb = int(re.val)
+        rowe = int(rb.val)
+    if cb.val < ce.val:
+        colb = int(cb.val)
+        cole = int(ce.val)
+    else:
+        colb = int(cb.val)
+        cole = int(ce.val)
+    
+    avg_list = []
+    num = (rowe - rowb)*(cole - colb)
+
+    for k in range(0, len(pic_list)):
+        x = 0
+        for i in range(rowb, rowe):
+            for j in range(colb, cole):
+                x += pic_list[k][i][j]
+        avg_list.append(x/num)
+    return avg_list, num, rowb, rowe, colb, cole
+
+def get_StDv_list():
+    stdv_list = []
+    avg_list, num, rowb, rowe, colb, cole = get_avg_list()
+    for k in range(0,len(pic_list)):
+        x = 0
+        for i in range(rowb, rowe):
+            for j in range(colb, cole):
+                x += (pic_list[k][i][j] - avg_list[k])**2
+        stdv_list.append((x/num)**0.5)
+
+    return stdv_list
+
+def new_plot(Event):
+    print(Event)
+    fig2 = plt.figure(2)
+    x = np.arange(0, len(pic_list), 1.0)
+    if Event == 'Plot Avg':
+        y, num, rowb, rowe, colb, cole = get_avg_list()
+        plt.plot(x,y)
+        plt.show()
+    if Event == 'Plot StDv':
+        y = get_StDv_list()
+        plt.plot(x,y)
+        plt.show()
+    if Event == 'Clear':
+        plt.close(fig2)
+plot_new.on_clicked(new_plot)
 
 pic_switch(None)
 plt.show()

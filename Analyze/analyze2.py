@@ -32,7 +32,7 @@ axre = plt.subplot2grid((20,20),(17,0),rowspan = 1, colspan = 20)
 axcb = plt.subplot2grid((20,20),(18,0),rowspan = 1, colspan = 20)
 axce = plt.subplot2grid((20,20),(19,0),rowspan = 1, colspan = 20)
 
-pic_swap = Slider(axps, 'Pic Index', 0, len(pic_list)-0.8, valinit=0)
+pic_swap = Slider(axps, 'Pic Index', 0, len(pic_list)-0.2, valinit=0)
 
 rb = Slider(axrb, 'Row Begin', 0, 2047, valinit=rb0)
 re = Slider(axre, 'Row End', 0, 2047, valinit=re0)

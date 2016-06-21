@@ -5,13 +5,16 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, RadioButtons
 from tifffile import imread
 import numpy as np
+import os
 
 fig = plt.figure(1)
 
-pic1 = imread('./2016_summer_XPD/Image/CdSeNP_000.tif')
-pic2 = imread('./2016_summer_XPD/Image/CdSeNP_001.tif')
-pic3 = imread('./2016_summer_XPD/Image/Ni300K.tif')
-pic_list = [pic1, pic2, pic3]
+a = os.listdir('./2016_summer_XPD/Image')
+file_list = [el for el in a if el.endswith('.tif')]
+
+pic_list = []
+for i in file_list:
+    pic_list.append(imread('./2016_summer_XPD/Image/'+i))
 
 rb0 = 400
 re0 = 600
@@ -29,7 +32,7 @@ axre = plt.subplot2grid((20,20),(17,0),rowspan = 1, colspan = 20)
 axcb = plt.subplot2grid((20,20),(18,0),rowspan = 1, colspan = 20)
 axce = plt.subplot2grid((20,20),(19,0),rowspan = 1, colspan = 20)
 
-pic_swap = Slider(axps, 'Pic Index', 0, 2.8, valinit=0)
+pic_swap = Slider(axps, 'Pic Index', 0, len(pic_list)-0.8, valinit=0)
 
 rb = Slider(axrb, 'Row Begin', 0, 2047, valinit=rb0)
 re = Slider(axre, 'Row End', 0, 2047, valinit=re0)
@@ -48,7 +51,7 @@ button4 = Button(max_ax, 'Max', color=axcolor, hovercolor='0.975')
 
 axnew = plt.subplot2grid((20,20),(6,14),rowspan = 5, colspan = 6)
 
-plot_new = RadioButtons(axnew, ('Plot Avg', 'Plot StDv', 'Clear'))
+plot_new = RadioButtons(axnew, ('Plot Avg', 'Plot StDv'))
 
 def avg(event):
     x = 0
@@ -164,8 +167,8 @@ def get_avg_list():
         colb = int(cb.val)
         cole = int(ce.val)
     else:
-        colb = int(cb.val)
-        cole = int(ce.val)
+        colb = int(ce.val)
+        cole = int(cb.val)
     
     avg_list = []
     num = (rowe - rowb)*(cole - colb)
@@ -190,19 +193,23 @@ def get_StDv_list():
 
     return stdv_list
 
-def new_plot(Event):
-    fig2 = plt.figure(2)
+def new_plot(event):
+    fig2 = plt.figure()
     x = np.arange(0, len(pic_list), 1.0)
-    if Event == 'Plot Avg':
+    if event == 'Plot Avg':
         y, num, rowb, rowe, colb, cole = get_avg_list()
+        plt.title("Average over Specified Region")
+        plt.ylabel("Average")
+        plt.xlabel("Picture Index")
         plt.plot(x,y)
-        plt.show()
-    if Event == 'Plot StDv':
+        plt.ion()
+    if event == 'Plot StDv':
+        plt.title("Standard Deviation over Specified Region")
+        plt.ylabel("Standard Deviation")
+        plt.xlabel("Picture Index")
         y = get_StDv_list()
         plt.plot(x,y)
-        plt.show()
-    if Event == 'Clear':
-        plt.close(fig2)
+        plt.ion()
 plot_new.on_clicked(new_plot)
 
 pic_switch(None)

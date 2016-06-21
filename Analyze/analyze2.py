@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, RadioButtons
 from tifffile import imread
 
-fig = plt.figure()
+fig = plt.figure(1)
 
 pic1 = imread('./2016_summer_XPD/Image/CdSeNP_000.tif')
 pic2 = imread('./2016_summer_XPD/Image/CdSeNP_001.tif')

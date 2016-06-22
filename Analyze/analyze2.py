@@ -49,9 +49,11 @@ button2 = Button(std_ax, 'StDv', color=axcolor, hovercolor='0.975')
 button3 = Button(min_ax, 'Min', color=axcolor, hovercolor='0.975')
 button4 = Button(max_ax, 'Max', color=axcolor, hovercolor='0.975')
 
-axnew = plt.subplot2grid((20,20),(6,14),rowspan = 5, colspan = 6)
+axnew = plt.subplot2grid((20,20),(6,14),rowspan = 3, colspan = 6)
+axgray = plt.subplot2grid((20,20),(9,14),rowspan = 3, colspan = 6)
 
 plot_new = RadioButtons(axnew, ('Plot Avg', 'Plot StDv'))
+gray = RadioButtons(axgray, ('RdBu','Greys_r'))
 
 def avg(event):
     x = 0
@@ -144,17 +146,26 @@ def get_max(event):
 button4.on_clicked(get_max)
 
 def pic_switch(Event):
-    axpic.cla()
-    axpic.imshow(pic_list[int(pic_swap.val)])
-    axpic.axvline(x=rb.val)
-    axpic.axvline(x=re.val)
-    axpic.axhline(y=cb.val)
-    axpic.axhline(y=ce.val)
+    if gray.value_selected == 'RdBu':
+        axpic.cla()
+        axpic.imshow(pic_list[int(pic_swap.val)], cmap = 'RdBu')
+        axpic.axvline(x=rb.val)
+        axpic.axvline(x=re.val)
+        axpic.axhline(y=cb.val)
+        axpic.axhline(y=ce.val)
+    if gray.value_selected == 'Greys_r':
+        axpic.cla()
+        axpic.imshow(pic_list[int(pic_swap.val)], cmap = 'Greys_r')
+        axpic.axvline(x=rb.val)
+        axpic.axvline(x=re.val)
+        axpic.axhline(y=cb.val)
+        axpic.axhline(y=ce.val)
 pic_swap.on_changed(pic_switch)
 rb.on_changed(pic_switch)
 re.on_changed(pic_switch)
 cb.on_changed(pic_switch)
 ce.on_changed(pic_switch)
+gray.on_clicked(pic_switch)
 
 def get_avg_list():
     if rb.val < re.val:

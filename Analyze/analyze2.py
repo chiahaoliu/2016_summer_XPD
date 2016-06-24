@@ -8,13 +8,14 @@ import numpy as np
 import os
 
 fig = plt.figure(1)
+file_name = input("Please write file name: ")
 
-a = os.listdir('2016_summer_XPD/Image')
+a = os.listdir(file_name)
 file_list = [el for el in a if el.endswith('.tif')]
 
 pic_list = []
 for i in file_list:
-    pic_list.append(imread('2016_summer_XPD/Image/'+i))
+    pic_list.append(imread(file_name + i))
 
 rb0 = 400
 re0 = 600

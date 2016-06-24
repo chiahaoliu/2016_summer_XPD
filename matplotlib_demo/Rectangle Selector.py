@@ -1,5 +1,4 @@
-#Source: http://matplotlib.org/1.5.1/examples/widgets/rectangle_selector.html
-
+from __future__ import print_function
 """
 Do a mouseclick somewhere, move the mouse to some destination, release
 the button.  This class gives click- and release-events and also draws
@@ -31,14 +30,15 @@ def toggle_selector(event):
         print(' RectangleSelector activated.')
         toggle_selector.RS.set_active(True)
 
-
-fig, current_ax = plt.subplots()                    # make a new plotingrange
+plt.figure(1)
+current_ax = plt.subplot2grid((5,5),(0,0),rowspan = 4, colspan = 4)
+#fig, current_ax = plt.subplots()                    # make a new plotingrange
 N = 100000                                       # If N is large one can see
 x = np.linspace(0.0, 10.0, N)                    # improvement by use blitting!
 
-plt.plot(x, +np.sin(.2*np.pi*x), lw=3.5, c='b', alpha=.7)  # plot something
-plt.plot(x, +np.cos(.2*np.pi*x), lw=3.5, c='r', alpha=.5)
-plt.plot(x, -np.sin(.2*np.pi*x), lw=3.5, c='g', alpha=.3)
+current_ax.plot(x, +np.sin(.2*np.pi*x), lw=3.5, c='b', alpha=.7)  # plot something
+current_ax.plot(x, +np.cos(.2*np.pi*x), lw=3.5, c='r', alpha=.5)
+current_ax.plot(x, -np.sin(.2*np.pi*x), lw=3.5, c='g', alpha=.3)
 
 print("\n      click  -->  release")
 

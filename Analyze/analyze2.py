@@ -4,7 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, Button, RadioButtons
 from tifffile import imread
-import numpy as np
 import os
 
 fig = plt.figure(1)
@@ -206,7 +205,7 @@ def get_StDv_list():
     return stdv_list
 
 def new_plot(event):
-    fig2 = plt.figure()
+    plt.figure()
     x = np.arange(0, len(pic_list), 1.0)
     if event == 'Plot Avg':
         y, num, rowb, rowe, colb, cole = get_avg_list()

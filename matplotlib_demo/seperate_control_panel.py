@@ -17,8 +17,9 @@ plot_add = RadioButtons(axRadio,(1,2,3))
 
 def pick_plot(event):
     plt.figure(1)
-    #axplot.cla()
+    axplot.cla()
     if event == '1':
+        print(y1)
         axplot.plot(x,y1)
     if event == '2':
         axplot.plot(x,y2)

@@ -3,8 +3,9 @@ This file is meant to be a prototype for defining ROI's to be used
 in later applications
 """
 import matplotlib.pyplot as plt
-from matplotlib.widgets import Slider, RadioButtons
+from matplotlib.widgets import Slider, RadioButtons, Button
 from tifffile import imread
+import numpy as np
 import os
 
 
@@ -25,6 +26,10 @@ axre = plt.subplot2grid((20, 20), (16, 10), rowspan=1, colspan=10)
 axcb = plt.subplot2grid((20, 20), (17, 10), rowspan=1, colspan=10)
 axce = plt.subplot2grid((20, 20), (18, 10), rowspan=1, colspan=10)
 axgray = plt.subplot2grid((20, 20), (0, 15), rowspan=6, colspan=5)
+axskipf = plt.subplot2grid((20, 20), (19, 5), rowspan=1, colspan=2)
+axskipb = plt.subplot2grid((20, 20), (19, 3), rowspan=1, colspan=2)
+axvmin = plt.subplot2grid((20, 20), (15, 0), rowspan=2, colspan=5)
+axvmax = plt.subplot2grid((20, 20), (17, 0), rowspan=2, colspan=5)
 
 pic_swap = Slider(axps, 'Pic Index', 0, len(pic_list)-0.2, valinit=0)
 rb = Slider(axrb, 'Row Begin', 0, 2047, valinit=100)
@@ -32,15 +37,37 @@ re = Slider(axre, 'Row End', 0, 2047, valinit=1900)
 cb = Slider(axcb, 'Col Begin', 0, 2047, valinit=100)
 ce = Slider(axce, 'Col End', 0, 2047, valinit=1900)
 gray = RadioButtons(axgray, ('RdBu', 'BrBG', 'RdYlGn', 'Greys_r'))
+skipf = Button(axskipf, '>')
+skipb = Button(axskipb, '<')
+abs_min_V = np.min(pic_list[int(pic_swap.val)])
+abs_max_V = np.max(pic_list[int(pic_swap.val)])
+vmin = Slider(axvmin, 'Vmin', abs_min_V, abs_max_V, abs_min_V)
+vmax = Slider(axvmax, 'Vmax', abs_min_V, abs_max_V, abs_max_V)
 
 
 def pic_switch(event):
     axpic.cla()
-    axpic.imshow(pic_list[int(pic_swap.val)], cmap=gray.value_selected)
+    axpic.imshow(pic_list[int(pic_swap.val)], vmin=vmin.val, vmax=vmax.val, cmap=gray.value_selected)
     axpic.axvline(x=rb.val)
     axpic.axvline(x=re.val)
     axpic.axhline(y=cb.val)
     axpic.axhline(y=ce.val)
+
+
+def forward(event):
+    if pic_swap.val + 1 >= len(pic_list) - 0.2:
+        pass
+    else:
+        x = pic_swap.val + 1
+        pic_swap.set_val(x)
+
+
+def backward(event):
+    if pic_swap.val - 1 < 0:
+        pass
+    else:
+        x = pic_swap.val - 1
+        pic_swap.set_val(x)
 
 
 class ROI(object):
@@ -52,6 +79,10 @@ class ROI(object):
         self.cole = ce.val
 
     def update(self, event):
+        self.rowb = rb.val
+        self.rowe = re.val
+        self.colb = cb.val
+        self.cole = ce.val
         print("Updated!")
         print(self.rowb, self.rowe, self.colb, self.cole)
         pic_switch(None)
@@ -64,8 +95,10 @@ re.on_changed(roi1.update)
 cb.on_changed(roi1.update)
 ce.on_changed(roi1.update)
 gray.on_clicked(pic_switch)
-
-
+skipf.on_clicked(forward)
+skipb.on_clicked(backward)
 pic_switch(None)
+vmin.on_changed(pic_switch)
+vmax.on_changed(pic_switch)
 
 plt.show()

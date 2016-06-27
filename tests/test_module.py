@@ -1,5 +1,11 @@
-#This file is meant to test the module to ensure it works
+"""
+This file is meant to test the module to ensure it works
+"""
 
-import package
-import not_package
-import Image
+"""
+import roi
+import unittest
+
+
+class TestPackage(unittest.TestCase):
+"""

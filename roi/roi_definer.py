@@ -36,7 +36,7 @@ class FileFinder(object):
 start = FileFinder()
 start.get_name()
 
-fig1 = plt.figure(1)
+plt.figure(1)
 axpic = plt.subplot2grid((20, 20), (0, 0), rowspan=14, colspan=14)
 axps = plt.subplot2grid((20, 20), (19, 10), rowspan=1, colspan=10)
 axrb = plt.subplot2grid((20, 20), (15, 10), rowspan=1, colspan=10)
@@ -67,16 +67,17 @@ zoom = RadioButtons(axzoom, ('Home', 'Zoom'))
 
 
 def pic_switch(event):
+    bounds = roi1.export()
     if zoom.value_selected == 'Zoom':
         axpic.cla()
         axpic.imshow(start.pic_list[int(pic_swap.val)], vmin=vmin.val, vmax=vmax.val, cmap=gray.value_selected)
         axpic.set_title(start.file_list[int(pic_swap.val)])
-        axpic.set_xlim(cb.val, ce.val)
-        axpic.set_ylim(re.val, rb.val)
-        axpic.axvline(x=cb.val)
-        axpic.axvline(x=ce.val)
-        axpic.axhline(y=rb.val)
-        axpic.axhline(y=re.val)
+        axpic.set_xlim(bounds[2], bounds[3])
+        axpic.set_ylim(bounds[1], bounds[0])
+        axpic.axvline(x=bounds[2])
+        axpic.axvline(x=bounds[3])
+        axpic.axhline(y=bounds[0])
+        axpic.axhline(y=bounds[1])
         axbar.cla()
         norm = Normalize(vmin=vmin.val, vmax=vmax.val)
         col = ColorbarBase(axbar, cmap=gray.value_selected, norm=norm, orientation='horizontal')
@@ -85,10 +86,10 @@ def pic_switch(event):
         axpic.cla()
         axpic.imshow(start.pic_list[int(pic_swap.val)], vmin=vmin.val, vmax=vmax.val, cmap=gray.value_selected)
         axpic.set_title(start.file_list[int(pic_swap.val)])
-        axpic.axvline(x=rb.val)
-        axpic.axvline(x=re.val)
-        axpic.axhline(y=cb.val)
-        axpic.axhline(y=ce.val)
+        axpic.axvline(x=bounds[2])
+        axpic.axvline(x=bounds[3])
+        axpic.axhline(y=bounds[0])
+        axpic.axhline(y=bounds[1])
         axbar.cla()
         norm = Normalize(vmin=vmin.val, vmax=vmax.val)
         col = ColorbarBase(axbar, cmap=gray.value_selected, norm=norm, orientation='horizontal')
@@ -113,19 +114,18 @@ def backward(event):
 
 class ROI(object):
 
-    def __init__(self):
-        self.rowb = rb.val
-        self.rowe = re.val
-        self.colb = cb.val
-        self.cole = ce.val
+    def __init__(self, rowb, rowe, colb, cole):
+        self.rowb = rowb
+        self.rowe = rowe
+        self.colb = colb
+        self.cole = cole
 
-    def update(self, event):
-        if rb.val >= 0 and re.val < 2048 and cb.val >= 0 and ce.val < 2048:
-            self.rowb = rb.val
-            self.rowe = re.val
-            self.colb = cb.val
-            self.cole = ce.val
-            pic_switch(None)
+    def update(self, rowb, rowe, colb, cole):
+        if rowb >= 0 and rowe < 2048 and colb >= 0 and cole < 2048:
+            self.rowb = rowb
+            self.rowe = rowe
+            self.colb = colb
+            self.cole = cole
 
         else:
             print('Invalid Boundaries')
@@ -135,13 +135,18 @@ class ROI(object):
 
         return boundaries
 
-roi1 = ROI()
+roi1 = ROI(rb.val, re.val, cb.val, ce.val)
+
+
+def update_values(event):
+    roi1.update(rb.val, re.val, cb.val, ce.val)
+    pic_switch(None)
 
 pic_swap.on_changed(pic_switch)
-rb.on_changed(roi1.update)
-re.on_changed(roi1.update)
-cb.on_changed(roi1.update)
-ce.on_changed(roi1.update)
+rb.on_changed(update_values)
+re.on_changed(update_values)
+cb.on_changed(update_values)
+ce.on_changed(update_values)
 gray.on_clicked(pic_switch)
 skipf.on_clicked(forward)
 skipb.on_clicked(backward)

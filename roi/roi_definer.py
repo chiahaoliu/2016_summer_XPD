@@ -1,3 +1,9 @@
+"""
+This is simply allows various programs to use the features found in the
+region of interest object
+"""
+
+
 class ROI:
 
     def __init__(self, rowb, rowe, colb, cole):

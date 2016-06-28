@@ -4,6 +4,8 @@ in later applications
 """
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider, RadioButtons, Button
+from matplotlib.colorbar import ColorbarBase
+from matplotlib.colors import Normalize
 from tifffile import imread
 import numpy as np
 import os
@@ -34,7 +36,7 @@ class FileFinder(object):
 start = FileFinder()
 start.get_name()
 
-plt.figure(1)
+fig1 = plt.figure(1)
 axpic = plt.subplot2grid((20, 20), (0, 0), rowspan=14, colspan=14)
 axps = plt.subplot2grid((20, 20), (19, 10), rowspan=1, colspan=10)
 axrb = plt.subplot2grid((20, 20), (15, 10), rowspan=1, colspan=10)
@@ -46,6 +48,8 @@ axskipf = plt.subplot2grid((20, 20), (19, 5), rowspan=1, colspan=2)
 axskipb = plt.subplot2grid((20, 20), (19, 3), rowspan=1, colspan=2)
 axvmin = plt.subplot2grid((20, 20), (15, 0), rowspan=2, colspan=5)
 axvmax = plt.subplot2grid((20, 20), (17, 0), rowspan=2, colspan=5)
+axbar = plt.subplot2grid((20, 20), (7, 14), rowspan=3, colspan=8)
+axzoom = plt.subplot2grid((20, 20), (11, 14), rowspan=3, colspan=8)
 
 pic_swap = Slider(axps, 'Pic Index', 0, len(start.pic_list)-1, valinit=0)
 rb = Slider(axrb, 'Row Begin', 0, 2047, valinit=100)
@@ -59,16 +63,36 @@ abs_min_V = np.min(start.pic_list[int(pic_swap.val)])
 abs_max_V = np.max(start.pic_list[int(pic_swap.val)])
 vmin = Slider(axvmin, 'Vmin', abs_min_V, abs_max_V, abs_min_V)
 vmax = Slider(axvmax, 'Vmax', abs_min_V, abs_max_V, abs_max_V)
+zoom = RadioButtons(axzoom, ('Home', 'Zoom'))
 
 
 def pic_switch(event):
-    axpic.cla()
-    axpic.imshow(start.pic_list[int(pic_swap.val)], vmin=vmin.val, vmax=vmax.val, cmap=gray.value_selected)
-    axpic.set_title(start.file_list[int(pic_swap.val)])
-    axpic.axvline(x=rb.val)
-    axpic.axvline(x=re.val)
-    axpic.axhline(y=cb.val)
-    axpic.axhline(y=ce.val)
+    if zoom.value_selected == 'Zoom':
+        axpic.cla()
+        axpic.imshow(start.pic_list[int(pic_swap.val)], vmin=vmin.val, vmax=vmax.val, cmap=gray.value_selected)
+        axpic.set_title(start.file_list[int(pic_swap.val)])
+        axpic.set_xlim(cb.val, ce.val)
+        axpic.set_ylim(re.val, rb.val)
+        axpic.axvline(x=rb.val)
+        axpic.axvline(x=re.val)
+        axpic.axhline(y=cb.val)
+        axpic.axhline(y=ce.val)
+        axbar.cla()
+        norm = Normalize(vmin=vmin.val, vmax=vmax.val)
+        col = ColorbarBase(axbar, cmap=gray.value_selected, norm=norm, orientation='horizontal')
+        col.set_ticks([vmin.val, vmax.val], update_ticks=True)
+    else:
+        axpic.cla()
+        axpic.imshow(start.pic_list[int(pic_swap.val)], vmin=vmin.val, vmax=vmax.val, cmap=gray.value_selected)
+        axpic.set_title(start.file_list[int(pic_swap.val)])
+        axpic.axvline(x=rb.val)
+        axpic.axvline(x=re.val)
+        axpic.axhline(y=cb.val)
+        axpic.axhline(y=ce.val)
+        axbar.cla()
+        norm = Normalize(vmin=vmin.val, vmax=vmax.val)
+        col = ColorbarBase(axbar, cmap=gray.value_selected, norm=norm, orientation='horizontal')
+        col.set_ticks([vmin.val, vmax.val], update_ticks=True)
 
 
 def forward(event):
@@ -124,5 +148,6 @@ skipb.on_clicked(backward)
 pic_switch(None)
 vmin.on_changed(pic_switch)
 vmax.on_changed(pic_switch)
+zoom.on_clicked(pic_switch)
 
 plt.show()

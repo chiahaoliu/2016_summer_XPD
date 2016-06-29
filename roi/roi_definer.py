@@ -6,14 +6,18 @@ region of interest object
 
 class ROI:
 
-    def __init__(self, rowb, rowe, colb, cole):
+    def __init__(self, rowb, rowe, colb, cole, frpixel, erpixel, fcpixel, ecpixel):
         self.rowb = rowb
         self.rowe = rowe
         self.colb = colb
         self.cole = cole
+        self.frpixel = frpixel
+        self.erpixel = erpixel
+        self.fcpixel = fcpixel
+        self.ecpixel = ecpixel
 
     def update(self, rowb, rowe, colb, cole):
-        if rowb >= 0 and rowe < 2048 and colb >= 0 and cole < 2048:
+        if rowb >= self.frpixel and rowe < self.erpixel and colb >= self.fcpixel and cole < self.ecpixel:
             self.rowb = rowb
             self.rowe = rowe
             self.colb = colb

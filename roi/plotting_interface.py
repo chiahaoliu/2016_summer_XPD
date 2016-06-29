@@ -90,7 +90,7 @@ def backward(event):
         pic_swap.set_val(x)
 
 
-roi1 = ROI(rb.val, re.val, cb.val, ce.val)
+roi1 = ROI(rb.val, re.val, cb.val, ce.val, 0, 2048, 0, 2048)
 
 
 def update_values(event):

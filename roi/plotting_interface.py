@@ -90,24 +90,26 @@ def backward(event):
         pic_swap.set_val(x)
 
 
-roi1 = ROI(rb.val, re.val, cb.val, ce.val, 0, 2048, 0, 2048)
+roi1 = ROI()
+roi1.load_array(start.pic_list[0])
 
 
 def update_values(event):
     roi1.update(rb.val, re.val, cb.val, ce.val)
     pic_switch(None)
 
-pic_swap.on_changed(pic_switch)
 rb.on_changed(update_values)
 re.on_changed(update_values)
 cb.on_changed(update_values)
 ce.on_changed(update_values)
+pic_swap.on_changed(pic_switch)
 gray.on_clicked(pic_switch)
 skipf.on_clicked(forward)
 skipb.on_clicked(backward)
-pic_switch(None)
 vmin.on_changed(pic_switch)
 vmax.on_changed(pic_switch)
 zoom.on_clicked(pic_switch)
+update_values(None)
+pic_switch(None)
 
 plt.show()

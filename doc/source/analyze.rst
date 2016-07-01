@@ -84,7 +84,10 @@ The ``analyze2`` function is an advancement from the ``analyze`` function in
 that it takes in active user input and prints out statements as required by
 user. The buttons are fairly self explanatory. The statistics buttons on
 the right side of the screen will print the value to the command line. The
-sliders allow the user to select the region they will observe.
+sliders allow the user to select the region they will observe. A function 
+was recently added that allows one to plot the standard deviation and average
+intensity of some selected region among all of the ``.tif`` files that are
+in the folder.
 
 .. code-block:: python
 

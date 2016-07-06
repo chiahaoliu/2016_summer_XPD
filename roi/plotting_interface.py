@@ -42,12 +42,13 @@ abs_max_V = np.max(start.pic_list[int(pic_swap.val)])
 vmin = Slider(axvmin, 'Vmin', abs_min_V, abs_max_V, abs_min_V)
 vmax = Slider(axvmax, 'Vmax', abs_min_V, abs_max_V, abs_max_V)
 zoom = RadioButtons(axzoom, ('Home', 'Zoom'))
-
+im = None
 
 def pic_switch(event):
     bounds = roi1.export()
     if zoom.value_selected == 'Zoom':
         axpic.cla()
+
         axpic.imshow(start.pic_list[int(pic_swap.val)], vmin=vmin.val, vmax=vmax.val, cmap=gray.value_selected)
         axpic.set_title(start.file_list[int(pic_swap.val)])
         axpic.set_xlim(bounds[2], bounds[3])
@@ -90,8 +91,7 @@ def backward(event):
         pic_swap.set_val(x)
 
 
-roi1 = ROI()
-roi1.load_array(start.pic_list[0])
+roi1 = ROI(start.pic_list[0])
 
 
 def update_values(event):

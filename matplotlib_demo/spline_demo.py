@@ -5,9 +5,9 @@ from collections import namedtuple
 from functools import reduce
 
 # uncomment this to set the backend
-# import matplotlib
-# matplotlib.use('Qt4Agg')
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Qt4Agg')
 
 
 class SplineFitter(object):

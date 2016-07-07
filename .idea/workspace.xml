@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="310cffa6-ba80-4ab8-86e6-7be043861ff9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyqt_prac/first_prac.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pyqt_prac/redo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/matplotlib_demo/spline_demo.py" afterPath="$PROJECT_DIR$/matplotlib_demo/spline_demo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roi/plotting_interface.py" afterPath="$PROJECT_DIR$/roi/plotting_interface.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roi/roi_definer.py" afterPath="$PROJECT_DIR$/roi/roi_definer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/use_cases/~$e_case_1.docx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/use_cases/~$e_case_2.docx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/use_cases/~$e_case_3.docx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/use_cases/~$e_case_4.docx" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pyqt_prac/redo.py" afterPath="$PROJECT_DIR$/pyqt_prac/redo.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roi/file_finder.py" afterPath="$PROJECT_DIR$/roi/file_finder.py" />
     </list>
     <ignored path="2016_summer_XPD.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,17 +29,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="redo.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pyqt_prac/redo.py">
+      <file leaf-file-name="display_window.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/reverse_engineer/display_window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+            <state relative-caret-position="102">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
-                <element signature="e#0#107#1" expanded="false" />
-                <element signature="e#1622#1777#0" expanded="false" />
-                <element signature="e#2177#2417#0" expanded="false" />
-                <element signature="e#2465#2577#0" expanded="false" />
-                <element signature="e#2710#2792#0" expanded="false" />
+                <element signature="e#0#114#1" expanded="false" />
+                <element signature="e#116#173#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,6 +58,8 @@
         <option value="$PROJECT_DIR$/matplotlib_demo/spline_demo.py" />
         <option value="$PROJECT_DIR$/roi/plotting_interface.py" />
         <option value="$PROJECT_DIR$/pyqt_prac/redo.py" />
+        <option value="$PROJECT_DIR$/roi/file_finder.py" />
+        <option value="$PROJECT_DIR$/reverse_engineer/display_window.py" />
       </list>
     </option>
   </component>
@@ -100,24 +100,7 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Python.redo">
-    <configuration default="false" name="pyqt.practic" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Documents/Old Computer/Python Stuff" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="2016_summer_XPD" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Documents/Old Computer/Python Stuff/pyqt.practic.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.display_window">
     <configuration default="false" name="redo" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -182,6 +165,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="2016_summer_XPD" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/roi/plotting_interface.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="display_window" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/reverse_engineer" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="2016_summer_XPD" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reverse_engineer/display_window.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -321,19 +321,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.pyqt.practic" />
-      <item index="1" class="java.lang.String" itemvalue="Python.redo" />
-      <item index="2" class="java.lang.String" itemvalue="Python.pyqt.practic (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.spline_demo" />
-      <item index="4" class="java.lang.String" itemvalue="Python.plotting_interface" />
+      <item index="0" class="java.lang.String" itemvalue="Python.redo" />
+      <item index="1" class="java.lang.String" itemvalue="Python.pyqt.practic (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.spline_demo" />
+      <item index="3" class="java.lang.String" itemvalue="Python.plotting_interface" />
+      <item index="4" class="java.lang.String" itemvalue="Python.display_window" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.redo" />
-        <item index="1" class="java.lang.String" itemvalue="Python.plotting_interface" />
-        <item index="2" class="java.lang.String" itemvalue="Python.spline_demo" />
-        <item index="3" class="java.lang.String" itemvalue="Python.pyqt.practic (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.pyqt.practic" />
+        <item index="0" class="java.lang.String" itemvalue="Python.display_window" />
+        <item index="1" class="java.lang.String" itemvalue="Python.redo" />
+        <item index="2" class="java.lang.String" itemvalue="Python.plotting_interface" />
+        <item index="3" class="java.lang.String" itemvalue="Python.spline_demo" />
+        <item index="4" class="java.lang.String" itemvalue="Python.pyqt.practic (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -362,7 +362,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3276699" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46359223" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46359223" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -401,12 +401,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/roi/plotting_interface.py">
+    <entry file="file://$PROJECT_DIR$/reverse_engineer/display_window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="65" column="59" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="59" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3657#3721#0" expanded="false" />
+            <element signature="e#0#114#1" expanded="false" />
+            <element signature="e#116#173#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -417,10 +418,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#107#1" expanded="false" />
-            <element signature="e#1622#1777#0" expanded="false" />
-            <element signature="e#2177#2417#0" expanded="false" />
-            <element signature="e#2465#2577#0" expanded="false" />
-            <element signature="e#2710#2792#0" expanded="false" />
+            <element signature="e#109#140#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -429,9 +427,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1003">
           <caret line="65" column="59" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyqt_prac/redo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#3657#3721#0" expanded="false" />
+            <element signature="e#0#107#1" expanded="false" />
+            <element signature="e#109#140#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/roi/plotting_interface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1003">
+          <caret line="65" column="59" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="59" />
         </state>
       </provider>
     </entry>
@@ -439,7 +452,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -449,10 +461,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#107#1" expanded="false" />
-            <element signature="e#1622#1777#0" expanded="false" />
-            <element signature="e#2177#2417#0" expanded="false" />
-            <element signature="e#2465#2577#0" expanded="false" />
-            <element signature="e#2710#2792#0" expanded="false" />
+            <element signature="e#109#140#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -527,7 +536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -552,14 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/roi/file_finder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pyqt_prac/first_prac.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -578,9 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="e#3657#3721#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -588,22 +585,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/roi/file_finder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#111#1" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyqt_prac/redo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="63" column="19" selection-start-line="63" selection-start-column="19" selection-end-line="63" selection-end-column="19" />
+        <state relative-caret-position="612">
+          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
           <folding>
             <element signature="e#0#107#1" expanded="false" />
-            <element signature="e#1622#1777#0" expanded="false" />
-            <element signature="e#2177#2417#0" expanded="false" />
-            <element signature="e#2465#2577#0" expanded="false" />
-            <element signature="e#2710#2792#0" expanded="false" />
+            <element signature="e#109#140#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reverse_engineer/display_window.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#114#1" expanded="false" />
+            <element signature="e#116#173#0" expanded="true" />
           </folding>
         </state>
       </provider>

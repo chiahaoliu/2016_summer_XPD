@@ -2,6 +2,7 @@
 This class is meant to help the interface locate and store the files that will
 be used in the interface
 """
+
 import os
 from tifffile import imread
 
@@ -9,10 +10,20 @@ from tifffile import imread
 class FileFinder(object):
 
     def __init__(self):
-        self.file_name = ''
+        self._file_name = ''
         self.a = []
         self.file_list = []
         self.pic_list = []
+
+    @property
+    def file_name(self):
+        return self._file_name
+
+    @file_name.setter
+    def file_name(self, val):
+        self._file_name = val
+        self.get_file_list()
+        self.get_image_arrays()
 
     def get_name(self):
         self.file_name = input('Please input directory location: ')

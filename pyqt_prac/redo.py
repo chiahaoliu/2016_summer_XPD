@@ -8,18 +8,16 @@ from roi.file_finder import FileFinder
 import sys
 from PyQt4 import QtGui, QtCore
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
 
 
 class MyMplCanvas(FigureCanvas):
 
     def __init__(self, parent=None, width=5, height=4, dpi=100):
-        self.fig = plt.figure(figsize=(width, height), dpi=dpi)
-        self.axes1 = plt.subplot2grid((1, 1), (0, 0))
+        self.fig = Figure(figsize=(width, height), dpi=dpi)
+        self.axes1 = self.fig.add_subplot(1, 1, 1)
 
-        self.axes1.hold(False)
-
-        FigureCanvas.__init__(self, self.fig)
+        super().__init__(self.fig)
         self.setParent(parent)
 
         FigureCanvas.setSizePolicy(self,
@@ -38,13 +36,14 @@ class AppWindow(QtGui.QMainWindow):
 
         self.start = FileFinder()
         self.start.file_name = 'C:/Users/Caleb/2016_summer_XPD/Image/'
-        self.start.get_file_list()
-        self.start.get_image_arrays()
+        # self.start.get_file_list()
+        # self.start.get_image_arrays()
 
         self.l, self.sc = self.get_canvas()
         self.im = self.compute_initial_figure()
         self.pic_swap = self.get_pic_swap()
         self.pic_index = self.get_pick_index_display()
+
         self.pic_swap.valueChanged[int].connect(self.changed_index)
 
         self.show()
@@ -56,14 +55,14 @@ class AppWindow(QtGui.QMainWindow):
         return l, sc
 
     def compute_initial_figure(self):
-        im = self.sc.axes1.imshow(self.start.pic_list[0], cmap='RdBu')
+        im = self.sc.axes1.imshow(self.start.pic_list[0], cmap='RdBu', interpolation='nearest')
         self.sc.axes1.set_title(self.start.file_list[0])
         return im
 
     def compute_new_figure(self, value):
-        print(value)
         self.im.set_data(self.start.pic_list[value])
         self.sc.axes1.set_title(self.start.file_list[value])
+        self.sc.draw_idle()
 
     def get_pic_swap(self):
         pic_swap = QtGui.QSlider(QtCore.Qt.Horizontal, self)

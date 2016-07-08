@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="310cffa6-ba80-4ab8-86e6-7be043861ff9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/use_cases/~$e_case_1.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/use_cases/~$e_case_2.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/use_cases/~$e_case_3.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/use_cases/~$e_case_4.docx" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pyqt_prac/redo.py" afterPath="$PROJECT_DIR$/pyqt_prac/redo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roi/file_finder.py" afterPath="$PROJECT_DIR$/roi/file_finder.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reverse_engineer/display_window.py" afterPath="$PROJECT_DIR$/reverse_engineer/display_window.py" />
     </list>
     <ignored path="2016_summer_XPD.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +26,24 @@
       <file leaf-file-name="display_window.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reverse_engineer/display_window.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
               <folding>
                 <element signature="e#0#114#1" expanded="false" />
-                <element signature="e#116#173#0" expanded="true" />
+                <element signature="e#321#898#0" expanded="false" />
+                <element signature="e#917#1010#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/xray-vision/xray_vision/qt_widgets/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding>
+                <element signature="n#!!doc" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -60,6 +67,7 @@
         <option value="$PROJECT_DIR$/pyqt_prac/redo.py" />
         <option value="$PROJECT_DIR$/roi/file_finder.py" />
         <option value="$PROJECT_DIR$/reverse_engineer/display_window.py" />
+        <option value="$USER_HOME$/xray-vision/xray_vision/qt_widgets/__init__.py" />
       </list>
     </option>
   </component>
@@ -96,7 +104,7 @@
     <panes />
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/xray-vision" />
+    <property name="last_opened_file_path" value="$USER_HOME$/xray-vision/xray_vision/qt_widgets/__init__.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
@@ -355,14 +363,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24919094" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3276699" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46359223" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46359223" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -407,7 +415,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#114#1" expanded="false" />
-            <element signature="e#116#173#0" expanded="true" />
+            <element signature="e#321#898#0" expanded="false" />
+            <element signature="e#917#1010#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -418,7 +427,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#107#1" expanded="false" />
-            <element signature="e#109#140#0" expanded="true" />
+            <element signature="e#109#140#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -436,7 +445,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#107#1" expanded="false" />
-            <element signature="e#109#140#0" expanded="true" />
+            <element signature="e#109#140#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -461,7 +470,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#107#1" expanded="false" />
-            <element signature="e#109#140#0" expanded="true" />
+            <element signature="e#109#140#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -604,18 +613,29 @@
           <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
           <folding>
             <element signature="e#0#107#1" expanded="false" />
-            <element signature="e#109#140#0" expanded="true" />
+            <element signature="e#109#140#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/xray-vision/xray_vision/qt_widgets/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/reverse_engineer/display_window.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
           <folding>
             <element signature="e#0#114#1" expanded="false" />
-            <element signature="e#116#173#0" expanded="true" />
+            <element signature="e#321#898#0" expanded="false" />
+            <element signature="e#917#1010#0" expanded="false" />
           </folding>
         </state>
       </provider>

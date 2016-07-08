@@ -13,7 +13,7 @@ class Display(CrossSectionMainWindow):
 
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
-        self.setWindowTitle('StackExplorer')
+        self.setWindowTitle('XPD View')
 
         self.start = FileFinder()
         self.start.file_name = 'C:/Users/Caleb/2016_summer_XPD/Image/'

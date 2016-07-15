@@ -10,31 +10,31 @@ from tifffile import imread
 class FileFinder(object):
 
     def __init__(self):
-        self._file_name = ''
+        self._directory_name = ''
         self.a = []
         self.file_list = []
         self.pic_list = []
 
     @property
-    def file_name(self):
-        return self._file_name
+    def directory_name(self):
+        return self._directory_name
 
-    @file_name.setter
-    def file_name(self, val):
-        self._file_name = val
+    @directory_name.setter
+    def directory_name(self, val):
+        self._directory_name = val
         self.get_file_list()
         self.get_image_arrays()
 
     def get_name(self):
-        self.file_name = input('Please input directory location: ')
+        self._directory_name = input('Please input directory location: ')
         self.get_file_list()
 
     def get_file_list(self):
-        self.a = os.listdir(self.file_name)
+        self.a = os.listdir(self._directory_name)
         self.file_list = [el for el in self.a if el.endswith('.tif')]
         self.get_image_arrays()
 
     def get_image_arrays(self):
         self.pic_list = []
         for i in self.file_list:
-            self.pic_list.append(imread(self.file_name + i))
+            self.pic_list.append(imread(self._directory_name + i))

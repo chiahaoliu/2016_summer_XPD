@@ -11,12 +11,12 @@ from roi.file_finder import FileFinder
 
 class Display(CrossSectionMainWindow):
 
-    def __init__(self, file_name='C:/Users/Caleb/2016_summer_XPD/Image/'):
+    def __init__(self, directory_name='C:/Users/Caleb/2016_summer_XPD/Image/'):
         QtGui.QMainWindow.__init__(self)
         self.setWindowTitle('XPD View')
 
         self.start = FileFinder()
-        self.start.file_name = file_name
+        self.start.directory_name = directory_name
 
         self._main_window = CrossSectionMainWindow(data_list=self.start.pic_list,
                                                    key_list=self.start.file_list,

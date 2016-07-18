@@ -7,7 +7,8 @@ from tifffile import imread
 import os
 
 fig = plt.figure(1)
-file_name = input("Please write file name: ")
+# file_name = input("Please write file name: ")
+file_name = 'C:/Users/Caleb/2016_summer_XPD/Image/'
 
 a = os.listdir(file_name)
 file_list = [el for el in a if el.endswith('.tif')]

@@ -32,7 +32,7 @@ class FileFinder(object):
     def get_file_list(self):
         self.a = os.listdir(self._directory_name)
         self.file_list = [el for el in self.a if el.endswith('.tif')]
-        self.a.sort(key=lambda x: os.path.getmtime(x))
+        self.a.sort(key=lambda x: os.path.getmtime(self._directory_name + x))
         self.get_image_arrays()
 
     def get_image_arrays(self):

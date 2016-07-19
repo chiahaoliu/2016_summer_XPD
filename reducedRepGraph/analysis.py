@@ -132,22 +132,22 @@ class analysis:
 
         return max_val
 
-    def x_and_y_vals(self, sigma=False, min=False, max=False, mean=False):
+    def x_and_y_vals(self, selection):
         x = range(0,len(self.file_list))
         y = []
         label = ""
         func = None
 
-        if sigma:
+        if selection == "sigma":
             func= self.get_stdev
             label = "standard deviation"
-        elif mean:
+        elif selection == "mean":
             func = self.get_avg_2d
             label = "mean"
-        elif min:
+        elif selection == "min":
             func = self.get_min
             label = "min"
-        elif max:
+        elif selection == "max":
             func = self.get_max
             label = "max"
 

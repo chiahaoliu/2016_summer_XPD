@@ -5,7 +5,7 @@ from file import get_files
 
 class reducedRepPlot:
 
-    def __init__(self, file_path, x_start, x_stop, y_start, y_stop, sigma=False, min=False, max=False, mean=False):
+    def __init__(self, file_path, x_start, x_stop, y_start, y_stop, selection):
         """
         constructor for reducedRepPlot object
         :param file_path: path to file directory
@@ -14,10 +14,6 @@ class reducedRepPlot:
         :param x_stop: stop val for x analysis
         :param y_start:
         :param y_stop:
-        :param sigma:
-        :param min:
-        :param max:
-        :param mean:
         """
         self.tif_list = get_files(file_path)
 
@@ -30,10 +26,7 @@ class reducedRepPlot:
         self.x_stop = x_stop
         self.y_start = y_start
         self.y_stop = y_stop
-        self.sigma = sigma
-        self.min = min
-        self.max = max
-        self.mean = mean
+        self.selection = selection
 
 
     def plot(self):
@@ -45,7 +38,7 @@ class reducedRepPlot:
         """
         a = analysis(self.tif_list, self.y_start, self.y_stop, self.x_start, self.x_stop)
 
-        x, y, label = a.x_and_y_vals(sigma=self.sigma, min=self.min, max=self.max, mean=self.mean)
+        x, y, label = a.x_and_y_vals(self.selection)
 
         plt.scatter(x, y)
 

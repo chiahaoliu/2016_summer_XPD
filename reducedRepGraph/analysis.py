@@ -132,6 +132,14 @@ class analysis:
 
         return max_val
 
+    def get_total_intensity(self, arr):
+        total_intensity = 0
+        for i in range(self.y_start, self.y_stop):
+            for j in range(self.x_start, self.x_stop):
+                total_intensity = arr[i][j]
+
+        return total_intensity
+
     def x_and_y_vals(self, selection):
         x = range(0,len(self.file_list))
         y = []
@@ -150,8 +158,11 @@ class analysis:
         elif selection == "max":
             func = self.get_max
             label = "max"
-
+        elif  selection == "total intensity":
+            func = self.get_total_intensity
+            label = "total intensity"
         for img in self.file_list:
+            print(img)
             temp_arr = imread(img)
 
             y.append(func(temp_arr))

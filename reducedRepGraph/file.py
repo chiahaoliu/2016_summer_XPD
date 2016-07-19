@@ -12,7 +12,7 @@ def get_files(dir):
         dir += '\\'
 
     a = os.listdir(dir)
-    file_list = [file for file in a if file.endswith('.tif')]
+    file_list = [file for file in a if file.endswith('.tif') and not (file.endswith('.dark.tif') or file.endswith('.raw.tif'))]
 
     pic_list = []
 

@@ -4,8 +4,12 @@ import sys
 
 class analysis:
 
-    def __init__(self, file_list):
+    def __init__(self, file_list, x_start, x_stop, y_start, y_stop):
         self.file_list = file_list
+        self.x_start = x_start
+        self.x_stop = x_stop
+        self.y_start = y_start
+        self.y_stop = y_stop
 
 
     def get_img_array(self, filename):
@@ -19,31 +23,31 @@ class analysis:
         return imread(filename)
 
 
-    def get_grid_to_analyze(self, x_start, x_stop, y_start, y_stop, array):
-
-        """
-        This function gets image data for later calculations
-        :param x_start: the start position of the desired image data's x axis
-        :param x_stop:  the stop position of the desired image data's x axis
-        :param y_start: the start position of the desired image data's y axis
-        :param y_stop: the stop position of the desired image data's y axis
-        :param array: the array to be passed through
-        :return: a subset of the original array to be analyzed
-        """
-        #pre checks on values
-        assert x_start >= 0 and x_start < x_stop
-        assert x_stop < len(array)
-        assert y_start >= 0 and y_start < y_stop
-        assert y_stop < len(array[0])
-
-        temp_arr=np.ndarray(shape=(x_stop-x_start, y_stop-y_start))
-
-        #loop that assigns values to the temporary array
-        for i in range(x_start,x_stop):
-            for j in range(y_start,y_stop):
-                temp_arr[i-x_start][j-y_start] = array[i][j]
-
-        return temp_arr
+    # def get_grid_to_analyze(self, x_start, x_stop, y_start, y_stop, array):
+    #
+    #     """
+    #     This function gets image data for later calculations
+    #     :param x_start: the start position of the desired image data's x axis
+    #     :param x_stop:  the stop position of the desired image data's x axis
+    #     :param y_start: the start position of the desired image data's y axis
+    #     :param y_stop: the stop position of the desired image data's y axis
+    #     :param array: the array to be passed through
+    #     :return: a subset of the original array to be analyzed
+    #     """
+    #     #pre checks on values
+    #     assert x_start >= 0 and x_start < x_stop
+    #     assert x_stop < len(array)
+    #     assert y_start >= 0 and y_start < y_stop
+    #     assert y_stop < len(array[0])
+    #
+    #     temp_arr=np.ndarray(shape=(x_stop-x_start, y_stop-y_start))
+    #
+    #     #loop that assigns values to the temporary array
+    #     for i in range(x_start,x_stop):
+    #         for j in range(y_start,y_stop):
+    #             temp_arr[i-x_start][j-y_start] = array[i][j]
+    #
+    #     return temp_arr
 
 
     def get_avg_2d(self, arr):
@@ -54,8 +58,8 @@ class analysis:
         """
         sum = 0
 
-        for i in range(0,len(arr)):
-            for j in range(0,len(arr[0])):
+        for i in range(self.y_start, self.y_stop):
+            for j in range(self.x_start, self.x_stop):
                 sum += arr[i][j]
 
         return sum/float(arr.size)
@@ -88,8 +92,8 @@ class analysis:
 
         #list and loop to subtract mean from each val
 
-        for i in range(0,len(arr)):
-            for j in range(0, len(arr[0])):
+        for i in range(self.y_start, self.y_stop):
+            for j in range(self.x_start, self.x_stop):
                 x += (array_avg - arr[i][j])**2
 
         #returning sqrt of the subtracted and squared mean to get stdev
@@ -105,8 +109,8 @@ class analysis:
 
         min_val = sys.maxsize
 
-        for i in range(0, len(arr)):
-            for j in range(0, len(arr[0])):
+        for i in range(self.y_start, self.y_stop):
+            for j in range(self.x_start, self.x_stop):
                 if arr[i][j] < min_val:
                     min_val = arr[i][j]
 
@@ -121,31 +125,35 @@ class analysis:
 
         max_val = -sys.maxsize
 
-        for i in range(0, len(arr)):
-            for j in range(0, len(arr[0])):
+        for i in range(self.y_start, self.y_stop):
+            for j in range(self.x_start, self.x_stop):
                 if arr[i][j] > max_val:
                     max_val = arr[i][j]
 
         return max_val
 
     def x_and_y_vals(self, sigma=False, min=False, max=False, mean=False):
-        x = []
-        y = range(0,len(self.file_list))
+        x = range(0,len(self.file_list))
+        y = []
+        label = ""
         func = None
 
         if sigma:
             func= self.get_stdev
+            label = "standard deviation"
         elif mean:
             func = self.get_avg_2d
+            label = "mean"
         elif min:
             func = self.get_min
+            label = "min"
         elif max:
             func = self.get_max
-
+            label = "max"
 
         for img in self.file_list:
             temp_arr = imread(img)
 
-            x.append(func(temp_arr))
+            y.append(func(temp_arr))
 
-        return x, y
+        return x, y, label

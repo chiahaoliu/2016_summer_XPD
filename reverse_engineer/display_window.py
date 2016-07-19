@@ -16,7 +16,7 @@ class Display(CrossSectionMainWindow):
         self.setWindowTitle('XPD View')
 
         self.start = FileFinder()
-        self.start.file_name = 'C:/Users/Caleb/2016_summer_XPD/Image/'
+        self.start.file_name = 'C:\\Users\\josep\\Documents\\GitHub\\BNL_BEAMLINE\\2016_summer_XPD\\Image\\'
 
         key_list, data_list = self.start.file_list, self.start.pic_list
         self._main_window = CrossSectionMainWindow(data_list=data_list,

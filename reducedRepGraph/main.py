@@ -3,7 +3,7 @@ from file import get_files
 
 def main():
     u_input = input("please input the directory that contains your files: ")
-    r_plt =  reducedRepPlot(get_files(u_input),-1, 2048, 0, 2048, min=True)
+    r_plt =  reducedRepPlot(get_files(u_input), 0, 2048, 0, 2048, min=True)
     r_plt.plot()
 
 try:

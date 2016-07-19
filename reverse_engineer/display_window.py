@@ -11,7 +11,7 @@ from roi.file_finder import FileFinder
 
 class Display(CrossSectionMainWindow):
 
-    def __init__(self, directory_name='C:/Users/Caleb/2016_summer_XPD/Image/'):
+    def __init__(self, directory_name='/home/cduff2/2016_intern/2016_summer_XPD/Image/'):
         QtGui.QMainWindow.__init__(self)
         self.setWindowTitle('XPD View')
 

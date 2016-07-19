@@ -12,13 +12,13 @@ class Window(QtGui.QMainWindow):
         self.file_path = None
         self.analysis_type = None
 
-        #main menu
+        # main menu
         extractAction = QtGui.QAction("&Quit", self)
         extractAction.setShortcut("Ctrl+Q")
         extractAction.setStatusTip("leave the app")
         extractAction.triggered.connect(self.close_application)
 
-        #set path
+        # set path
         setPath = QtGui.QAction("&Set Directory", self)
         setPath.setShortcut("Ctrl+O")
         setPath.setStatusTip("Set image directory")

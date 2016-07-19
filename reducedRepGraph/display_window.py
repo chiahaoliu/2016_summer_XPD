@@ -24,8 +24,7 @@ class Window(QtGui.QMainWindow):
         setPath.setStatusTip("Set image directory")
         setPath.triggered.connect(self.set_path)
 
-        #set analysis tyoe
-        set_type = QtGui.QAction("&Set Analysis Type", self)
+        #set analysis type
         select_mean = QtGui.QAction("&mean", self)
         select_mean.triggered.connect(self.set_type_mean)
 
@@ -38,7 +37,8 @@ class Window(QtGui.QMainWindow):
         select_max = QtGui.QAction("&max", self)
         select_max.triggered.connect(self.set_type_max)
 
-
+        select_total_intensity = QtGui.QAction("&total intensity", self)
+        select_total_intensity.triggered.connect(self.set_type_total)
 
         self.statusBar()
 
@@ -48,11 +48,11 @@ class Window(QtGui.QMainWindow):
         analysis_submenu = QtGui.QMenu("analysis settings", graph_menu)
         fileMenu.addAction(extractAction)
         fileMenu.addAction(setPath)
-        graph_menu.addAction(set_type)
         analysis_submenu.addAction(select_max)
         analysis_submenu.addAction(select_min)
         analysis_submenu.addAction(select_mean)
         analysis_submenu.addAction(select_std_dev)
+        analysis_submenu.addAction(select_total_intensity)
         graph_menu.addMenu(analysis_submenu)
 
         self.home()
@@ -92,8 +92,12 @@ class Window(QtGui.QMainWindow):
         self.analysis_type = "max"
         print("max")
 
+    def set_type_total(self):
+        self.analysis_type = "total intensity"
+        print("total intensity")
+
     def plot_analysis(self):
-        reducedRepPlot.__init__(self, self.file_path, 0, 2048, 0, 2048, self.analysis_type)
+        reducedRepPlot.__init__(self, self.file_path, 500, 700, 500, 700, self.analysis_type)
         reducedRepPlot.plot(self)
 
 def run():

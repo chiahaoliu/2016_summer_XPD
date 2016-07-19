@@ -6,7 +6,7 @@ from tifffile import imread
 
 answer = int(input('Type 1, 2, or 3 for image: '))
 if answer == 1:
-    Cd = imread('./Image/CdSeNP_000.tif')
+    Cd = imread('C:/Users/Caleb/2016_summer_XPD/Image/CdSeNP_000.tif')
 elif answer == 2:
     Cd = imread('./Image/CdSeNP_001.tif')
 else:

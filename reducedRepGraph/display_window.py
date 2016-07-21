@@ -62,7 +62,7 @@ class Window(QtGui.QMainWindow):
         btn = QtGui.QPushButton("Plot", self)
 
         btn.clicked.connect(self.plot_analysis)
-        btn.resize(100,100)
+        btn.resize(100, 100)
         btn.move(100, 100)
 
     def close_application(self):

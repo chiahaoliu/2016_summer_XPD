@@ -1,6 +1,7 @@
 import sys
 from PyQt4 import QtCore, QtGui
 
+
 class StartQT4(QtGui.QMainWindow):
     def __init__(self):
         super(StartQT4, self).__init__()

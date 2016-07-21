@@ -70,11 +70,9 @@ class Window(QtGui.QMainWindow):
         sys.exit()
 
     def set_path(self):
-        popup = QtGui.QInputDialog()
-        text, ok = popup.getText(self, "What is the filepath for the image directory?", "set filepath")
-        if ok:
-            self.file_path = text
-            print( self.file_path)
+        popup = QtGui.QFileDialog()
+        self.file_path = str(popup.getExistingDirectory())
+        print(self.file_path)
 
     def set_type_mean(self):
         self.analysis_type = "mean"

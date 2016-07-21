@@ -96,7 +96,7 @@ class Window(QtGui.QMainWindow):
         print("total intensity")
 
     def plot_analysis(self):
-        rpp = reducedRepPlot(self.file_path, 0, 2048, 0, 2048, self.analysis_type)
+        rpp = reducedRepPlot(self.file_path, 200, 600, 200, 600, self.analysis_type)
         rpp.plot()
         #todo add multiprocessing to function in plot_analysis
         # rpp = reducedRepPlot(self.file_path, 500, 700, 500, 700, self.analysis_type)

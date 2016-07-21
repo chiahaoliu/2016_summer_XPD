@@ -1,16 +1,17 @@
 from tifffile import imread
 import numpy as np
 import sys
+import multiprocessing
 
-class analysis:
+class analysis_concurrent:
 
-    def __init__(self, file_list, x_start, x_stop, y_start, y_stop, selection):
-        self.file_list = file_list
+    def __init__(self, x_start, x_stop, y_start, y_stop, selection):
         self.x_start = x_start
         self.x_stop = x_stop
         self.y_start = y_start
         self.y_stop = y_stop
         self.selection = selection
+        self.label = ""
 
 
     def get_img_array(self, filename):
@@ -141,31 +142,38 @@ class analysis:
 
         return total_intensity
 
-    def x_and_y_vals(self):
-        x = range(0,len(self.file_list))
+    def x_and_y_vals(self, lock, queue, file_list):
+
+        #x = range(0,len(self.file_list))
         y = []
         label = ""
         func = None
 
         if self.selection == "sigma":
             func= self.get_stdev
-            label = "standard deviation"
+            self.label = "standard deviation"
         elif self.selection == "mean":
             func = self.get_avg_2d
-            label = "mean"
+            self.label = "mean"
         elif self.selection == "min":
             func = self.get_min
-            label = "min"
+            self.label = "min"
         elif self.selection == "max":
             func = self.get_max
-            label = "max"
+            self.label = "max"
         elif  self.selection == "total intensity":
             func = self.get_total_intensity
-            label = "total intensity"
-        for img in self.file_list:
+            self.label = "total intensity"
+
+        list_num = file_list.pop(0)
+        y.append(list_num)
+        for img in file_list:
+
+            lock.acquire()
             print(img)
+            lock.release()
             temp_arr = imread(img)
 
             y.append(func(temp_arr))
 
-        return x, y, label
+        queue.put(y)

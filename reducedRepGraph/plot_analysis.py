@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-from analysis import analysis
+from analysis_concurrent import analysis_concurrent
 from file import get_files
+import multiprocessing
 
 
 class reducedRepPlot:
@@ -28,22 +29,79 @@ class reducedRepPlot:
         self.y_stop = y_stop
         self.selection = selection
 
+    def selectionSort(self, alist):
+        for fillslot in range(len(alist) - 1, 0, -1):
+            positionOfMax = 0
+            for location in range(1, fillslot + 1):
+                if alist[location][0] > alist[positionOfMax][0]:
+                    positionOfMax = location
+
+            temp = alist[fillslot]
+            alist[fillslot] = alist[positionOfMax]
+            alist[positionOfMax] = temp
+        for arr in alist:
+            arr.pop(0)
+        return alist
+
+    # def check_lists(self, list, nested_list, cpu_num):
+    #     flattened_list = [val for sublist in nested_list for val in sublist]
+    #     for i in range(0,cpu_num):
+    #         flattened_list.remove(i)
+    #
+    #     print(flattened_list == list)
 
     def plot(self):
         """
-        This function will plot analysis data as a funciton of the number of images
-        :param func: the function you would like to apply to the data
-        :type func: function
+        This function will plot analysis data as a funciton of the number of images. uses multiprocessing to speed things up
         :return: void
         """
-        a = analysis(self.tif_list, self.y_start, self.y_stop, self.x_start, self.x_stop)
+        a = analysis_concurrent(self.y_start, self.y_stop, self.x_start, self.x_stop, self.selection)
+        trunc_list = []
+        cpu_count = multiprocessing.cpu_count()
+        temp_list = []
+        for i in range(0, cpu_count):
 
-        x, y, label = a.x_and_y_vals(self.selection)
+            if i == cpu_count-1:
+                temp_list = self.tif_list[(i*len(self.tif_list)//cpu_count) : (((1+i)*len(self.tif_list)//cpu_count) +
+                                                                               (len(self.tif_list)%cpu_count))]
+                temp_list.insert(0, i)
 
-        plt.scatter(x, y)
+            else:
+                temp_list = self.tif_list[(i*len(self.tif_list)//cpu_count) : ((1+i)*len(self.tif_list)//cpu_count)]
+                temp_list.insert(0, i)
+            trunc_list.append(temp_list)
+
+       # print(self.check_lists(self.tif_list, trunc_list, cpu_count))
+
+        process_list = []
+        x = range(0,len(self.tif_list))
+        y = []
+        q = multiprocessing.Queue()
+        l = multiprocessing.Lock()
+        #p = multiprocessing.Process(a.x_and_y_vals, args=(l,))
+
+
+        for i in range(0, cpu_count):
+            process_list.append(multiprocessing.Process(target=a.x_and_y_vals, args=(l, q, trunc_list[i])))
+
+        for process in process_list:
+            process.start()
+
+        for process in process_list:
+            process.join()
+
+
+        for i in range(0,cpu_count):
+            y.append(q.get())
+
+        y = self.selectionSort(y)
+        flattened_y = [val for sublist in y for val in sublist]
+
+        assert len(flattened_y) == len(self.tif_list)
+        plt.scatter(x, flattened_y)
 
         plt.xlabel("file num")
-        plt.ylabel(label)
+        plt.ylabel(self.selection)
 
       #  plt.xscale()
 

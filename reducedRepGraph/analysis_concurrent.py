@@ -11,6 +11,7 @@ class analysis_concurrent:
         self.y_start = y_start
         self.y_stop = y_stop
         self.selection = selection
+        self.label = ""
 
 
     def get_img_array(self, filename):
@@ -150,26 +151,28 @@ class analysis_concurrent:
 
         if self.selection == "sigma":
             func= self.get_stdev
-            label = "standard deviation"
+            self.label = "standard deviation"
         elif self.selection == "mean":
             func = self.get_avg_2d
-            label = "mean"
+            self.label = "mean"
         elif self.selection == "min":
             func = self.get_min
-            label = "min"
+            self.label = "min"
         elif self.selection == "max":
             func = self.get_max
-            label = "max"
+            self.label = "max"
         elif  self.selection == "total intensity":
             func = self.get_total_intensity
-            label = "total intensity"
+            self.label = "total intensity"
+
+        list_num = file_list.pop(0)
+        y.append(list_num)
         for img in file_list:
 
             lock.acquire()
             print(img)
             lock.release()
             temp_arr = imread(img)
-            #lock.release()
 
             y.append(func(temp_arr))
 

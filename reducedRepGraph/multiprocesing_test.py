@@ -4,7 +4,7 @@ from tifffile import imread
 file_dir = get_files("C:\\Users\\josep\\Documents\\GitHub\\BNL_BEAMLINE\\TIFF data\\Cu18Se\\cu18\\cooling\\")
 
 arr_list = []
-for i in range(0,50+):
+for i in range(0,50):
     arr_list.append(imread(file_dir[i]))
 
 def test_fn(x):

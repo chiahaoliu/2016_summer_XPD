@@ -1,6 +1,7 @@
 import sys
 from PyQt4 import QtGui, QtCore
 from plot_analysis import reducedRepPlot
+import multiprocessing
 
 
 class Window(QtGui.QMainWindow):
@@ -8,7 +9,7 @@ class Window(QtGui.QMainWindow):
     def __init__(self):
         super(Window,self).__init__()
         self.setGeometry(50, 50, 500, 300)
-        self.setWindowTitle("pyQt tutorial")
+        self.setWindowTitle("reducedRepGraph")
         self.file_path = None
         self.analysis_type = None
 
@@ -95,12 +96,19 @@ class Window(QtGui.QMainWindow):
         print("total intensity")
 
     def plot_analysis(self):
-        reducedRepPlot.__init__(self, self.file_path, 500, 700, 500, 700, self.analysis_type)
-        reducedRepPlot.plot(self)
+        rpp = reducedRepPlot(self.file_path, 500, 700, 500, 700, self.analysis_type)
+        rpp.plot()
+        #todo add multiprocessing to function in plot_analysis
+        # rpp = reducedRepPlot(self.file_path, 500, 700, 500, 700, self.analysis_type)
+        #
+        # p = multiprocessing.Process(target=rpp.plot)
+        # p.start()
 
 def run():
     app = QtGui.QApplication(sys.argv)
     GUI = Window()
     sys.exit(app.exec_())
 
-run()
+
+if __name__ == '__main__':
+    run()

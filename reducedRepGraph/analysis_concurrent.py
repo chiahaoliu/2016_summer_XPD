@@ -1,11 +1,11 @@
 from tifffile import imread
 import numpy as np
 import sys
+import multiprocessing
 
-class analysis:
+class analysis_concurrent:
 
-    def __init__(self, file_list, x_start, x_stop, y_start, y_stop, selection):
-        self.file_list = file_list
+    def __init__(self, x_start, x_stop, y_start, y_stop, selection):
         self.x_start = x_start
         self.x_stop = x_stop
         self.y_start = y_start
@@ -141,8 +141,9 @@ class analysis:
 
         return total_intensity
 
-    def x_and_y_vals(self):
-        x = range(0,len(self.file_list))
+    def x_and_y_vals(self, lock, queue, file_list):
+
+        #x = range(0,len(self.file_list))
         y = []
         label = ""
         func = None
@@ -162,10 +163,14 @@ class analysis:
         elif  self.selection == "total intensity":
             func = self.get_total_intensity
             label = "total intensity"
-        for img in self.file_list:
+        for img in file_list:
+
+            lock.acquire()
             print(img)
+            lock.release()
             temp_arr = imread(img)
+            #lock.release()
 
             y.append(func(temp_arr))
 
-        return x, y, label
+        queue.put(y)

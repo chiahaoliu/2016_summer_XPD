@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-from analysis import analysis
+from analysis_concurrent import analysis_concurrent
 from file import get_files
+import multiprocessing
 
 
 class reducedRepPlot:
@@ -36,14 +37,43 @@ class reducedRepPlot:
         :type func: function
         :return: void
         """
-        a = analysis(self.tif_list, self.y_start, self.y_stop, self.x_start, self.x_stop)
+        a = analysis_concurrent(self.y_start, self.y_stop, self.x_start, self.x_stop, self.selection)
+        trunc_list = []
+        cpu_count = multiprocessing.cpu_count()
+        for i in range(0, cpu_count):
+            if i == cpu_count-1:
+                temp_list = self.tif_list[(i*len(self.tif_list)//cpu_count) : (((1+i)*len(self.tif_list)//cpu_count) +
+                                                                               (len(self.tif_list)%cpu_count))]
+            else:
+                temp_list = self.tif_list[(i*len(self.tif_list)//cpu_count) : ((1+i)*len(self.tif_list)//cpu_count)]
+            trunc_list.append(temp_list)
 
-        x, y, label = a.x_and_y_vals(self.selection)
+        process_list = []
+        x = range(0,len(self.tif_list))
+        y = []
+        q = multiprocessing.Queue()
+        l = multiprocessing.Lock()
+        #p = multiprocessing.Process(a.x_and_y_vals, args=(l,))
 
-        plt.scatter(x, y)
+        for i in range(0, cpu_count):
+            process_list.append(multiprocessing.Process(target=a.x_and_y_vals, args=(l, q, trunc_list[i])))
+
+        for process in process_list:
+            process.start()
+
+        for process in process_list:
+            process.join()
+
+
+        for i in range(0,cpu_count):
+            y.append(q.get())
+
+        flattened_y = [val for sublist in y for val in sublist]
+        assert len(flattened_y) == len(self.tif_list)
+        plt.scatter(x, flattened_y)
 
         plt.xlabel("file num")
-        plt.ylabel(label)
+        #plt.ylabel(label)
 
       #  plt.xscale()
 

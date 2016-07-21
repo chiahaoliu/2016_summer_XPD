@@ -57,7 +57,7 @@ class reducedRepPlot:
         """
         a = analysis_concurrent(self.y_start, self.y_stop, self.x_start, self.x_stop, self.selection)
         trunc_list = []
-        cpu_count = 8 #multiprocessing.cpu_count()
+        cpu_count = multiprocessing.cpu_count()
         temp_list = []
         for i in range(0, cpu_count):
 
@@ -94,9 +94,7 @@ class reducedRepPlot:
         for i in range(0,cpu_count):
             y.append(q.get())
 
-        print(y)
         y = self.selectionSort(y)
-        print(y)
         flattened_y = [val for sublist in y for val in sublist]
 
         assert len(flattened_y) == len(self.tif_list)

@@ -13,6 +13,7 @@ class analysis:
         self.selection = selection
 
 
+
     def get_img_array(self, filename):
 
         """

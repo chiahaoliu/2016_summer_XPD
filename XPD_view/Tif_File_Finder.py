@@ -54,5 +54,5 @@ class TifFileFinder(object):
         if temp_file_list is not None:
             for i in temp_file_list:
                 self.pic_list.append(imread(self._directory_name + i))
-                new_pics.append(self._directory_name + i)
+                new_pics.append(imread(self._directory_name + i))
         return temp_file_list, new_pics

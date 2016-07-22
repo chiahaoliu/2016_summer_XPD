@@ -16,18 +16,9 @@ class TifFileFinder(object):
         self.file_list = []
         self.pic_list = []
 
-    @property
-    def directory_name(self):
-        return self._directory_name
-
-    @directory_name.setter
-    def directory_name(self, val):
-        if val[-1] != '/' or '\\':
-            val += '/'
-        self._directory_name = val
-        self.get_file_list()
-
     def get_file_list(self):
+        if self._directory_name[-1] != '/' or '\\':
+            self._directory_name += '/'
         self.dir_fil = os.listdir(self._directory_name)
         no1 = '.dark.tif'
         no2 = '.raw.tif'
@@ -39,6 +30,7 @@ class TifFileFinder(object):
         self.pic_list = []
         for i in self.file_list:
             self.pic_list.append(imread(self._directory_name + i))
+            print('read Image!!')
 
     def get_new_files(self):
         self.dir_fil = os.listdir(self._directory_name)

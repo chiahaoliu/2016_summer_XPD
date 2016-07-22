@@ -47,7 +47,6 @@ class StackExplorer(QtGui.QMainWindow):
         num_images = self.counter
         self._main_window._messenger._ctrl_widget._slider_img.setMaximum(num_images-1)
         self._main_window._messenger._ctrl_widget._spin_img.setMaximum(num_images-1)
-        # self._main_window._messenger._ctrl_widget.init_img_changer(self._slider_img, self._spin_img, num_images)
 
 
 app = QtGui.QApplication(sys.argv)

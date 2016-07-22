@@ -22,6 +22,8 @@ class TifFileFinder(object):
 
     @directory_name.setter
     def directory_name(self, val):
+        if val[-1] != '/' or '\\':
+            val += '/'
         self._directory_name = val
         self.get_file_list()
 
@@ -34,4 +36,28 @@ class TifFileFinder(object):
         self.get_image_arrays()
 
     def get_image_arrays(self):
+        self.pic_list = []
+        for i in self.file_list:
+            self.pic_list.append(imread(self._directory_name + i))
 
+    def get_new_files(self):
+        self.dir_fil = os.listdir(self._directory_name)
+        no1 = '.dark.tif'
+        no2 = '.raw.tif'
+        self.dir_fil.sort(key=lambda x: os.path.getmtime(self._directory_name + x))
+        new_file_list = [el for el in self.dir_fil if el.endswith('.tif') and not el.endswith(no1) or el.endswith(no2)]
+        need_read_files = []
+        for i in new_file_list:
+            add = True
+            for j in self.file_list:
+                if i == j:
+                    add = False
+                    break
+            if add:
+                self.file_list.append(i)
+                need_read_files.append(i)
+        self.read_in_new_files(need_read_files)
+
+    def get_new_images(self, temp_file_list):
+        for i in temp_file_list:
+            self.pic_list.append(imread(self._directory_name + i))

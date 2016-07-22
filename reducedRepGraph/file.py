@@ -8,6 +8,10 @@ def get_files(dir):
     :type dir: str
     :return: A list of tif files
     """""
+
+    if dir is None or len(dir) == 0:
+        raise NotADirectoryError("Directory not specified")
+
     if dir[-1] != '/' or '\\':
         dir += '/'
 

@@ -96,8 +96,30 @@ class Window(QtGui.QMainWindow):
         print("total intensity")
 
     def plot_analysis(self):
-        rpp = reducedRepPlot(self.file_path, 200, 600, 200, 600, self.analysis_type)
-        rpp.plot()
+        try:
+            rpp = reducedRepPlot(self.file_path, 200, 600, 200, 600, self.analysis_type)
+            rpp.plot()
+        except NotADirectoryError:
+            print("exception excepted")
+            err_msg_file = QtGui.QMessageBox()
+            err_msg_file.setIcon(QtGui.QMessageBox.Critical)
+            err_msg_file.setWindowTitle("Error")
+            err_msg_file.setText("You did not specify a file path.")
+            err_msg_file.setInformativeText("click open to set the file path")
+            err_msg_file.setStandardButtons(QtGui.QMessageBox.Open)
+            err_msg_file.buttonClicked.connect(self.set_path)
+            err_msg_file.exec_()
+        except AssertionError:
+            err_msg_analysis = QtGui.QMessageBox()
+            err_msg_analysis.setIcon(QtGui.QMessageBox.Critical)
+            err_msg_analysis.setWindowTitle("Error")
+            err_msg_analysis.setText("You did not specify an analysis type")
+            err_msg_analysis.setInformativeText("please go to the menu and select an analysis type before proceeding")
+            err_msg_analysis.setStandardButtons(QtGui.QMessageBox.Close)
+            #err_msg_analysis.buttonClicked.connect(self.set_path)
+            err_msg_analysis.exec_()
+
+
         #todo add multiprocessing to function in plot_analysis
         # rpp = reducedRepPlot(self.file_path, 500, 700, 500, 700, self.analysis_type)
         #

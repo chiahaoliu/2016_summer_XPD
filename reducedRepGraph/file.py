@@ -9,7 +9,7 @@ def get_files(dir):
     :return: A list of tif files
     """""
     if dir[-1] != '/' or '\\':
-        dir += '\\'
+        dir += '/'
 
     a = os.listdir(dir)
     file_list = [file for file in a if file.endswith('.tif') and not (file.endswith('.dark.tif') or file.endswith('.raw.tif'))]

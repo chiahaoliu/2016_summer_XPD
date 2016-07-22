@@ -30,7 +30,6 @@ class TifFileFinder(object):
         self.pic_list = []
         for i in self.file_list:
             self.pic_list.append(imread(self._directory_name + i))
-            print('read Image!!')
 
     def get_new_files(self):
         self.dir_fil = os.listdir(self._directory_name)
@@ -48,8 +47,12 @@ class TifFileFinder(object):
             if add:
                 self.file_list.append(i)
                 need_read_files.append(i)
-        self.read_in_new_files(need_read_files)
+        return self.get_new_images(need_read_files)
 
     def get_new_images(self, temp_file_list):
-        for i in temp_file_list:
-            self.pic_list.append(imread(self._directory_name + i))
+        new_pics = []
+        if temp_file_list is not None:
+            for i in temp_file_list:
+                self.pic_list.append(imread(self._directory_name + i))
+                new_pics.append(self._directory_name + i)
+        return temp_file_list, new_pics

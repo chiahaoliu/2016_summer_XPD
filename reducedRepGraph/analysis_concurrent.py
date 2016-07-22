@@ -12,6 +12,7 @@ class analysis_concurrent:
         self.y_stop = y_stop
         self.selection = selection
         self.label = ""
+        assert self.selection is not None
 
 
     def get_img_array(self, filename):

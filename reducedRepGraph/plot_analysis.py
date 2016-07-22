@@ -16,7 +16,11 @@ class reducedRepPlot:
         :param y_start:
         :param y_stop:
         """
+
         self.tif_list = get_files(file_path)
+
+
+
 
         assert x_start >= 0 and x_start < x_stop
         assert x_stop <= 2048 #TODO change so resolution is flexible

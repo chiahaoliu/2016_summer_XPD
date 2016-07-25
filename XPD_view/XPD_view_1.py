@@ -10,17 +10,16 @@ import numpy as np
 from Tif_File_Finder import TifFileFinder
 from plot_analysis import reducedRepPlot
 
+
 def data_gen(length):
     x, y = [_ * 2 * np.pi / 200 for _ in np.ogrid[-200:200, -200:200]]
     rep = int(np.sqrt(length))
     data = []
-    lbls = []
     for idx in range(length):
-        lbls.append(str(idx))
         kx = idx // rep + 1
         ky = idx % rep
         data.append(np.sin(kx * x) * np.cos(ky * y) + 1.05)
-    return lbls, data
+    return data
 
 
 class Display(QtGui.QMainWindow):
@@ -31,7 +30,13 @@ class Display(QtGui.QMainWindow):
         self.analysis_type = None
         self.file_path = None
 
+<<<<<<< HEAD
         self.key_list, self.data_list = data_gen(1000)
+=======
+        self.key_list = ['Home']
+        self.data_list = data_gen(1)
+        self.Tif = TifFileFinder()
+>>>>>>> 5bee5cd1113c14672c684056529061429b08f114
 
         self._main_window = CrossSectionMainWindow(data_list=self.data_list,
                                                    key_list=self.key_list,
@@ -40,13 +45,17 @@ class Display(QtGui.QMainWindow):
         self._main_window.setFocus()
         self.setCentralWidget(self._main_window)
 
-        # set path
-        setPath = QtGui.QAction("&Set Directory", self)
-        setPath.setShortcut("Ctrl+O")
-        setPath.setStatusTip("Set image directory")
-        setPath.triggered.connect(self.set_path)
+        # set path option
+        setpath = QtGui.QAction("&Set Directory", self)
+        setpath.setShortcut("Ctrl+O")
+        setpath.setStatusTip("Set image directory")
+        setpath.triggered.connect(self.set_path)
 
-        #set analysis type
+        # sets up refresh button
+        refresh = QtGui.QAction("&Refresh Files", self)
+        refresh.triggered.connect(self.refresh)
+
+        # set analysis type options
         select_mean = QtGui.QAction("&mean", self)
         select_mean.triggered.connect(self.set_type_mean)
 
@@ -67,12 +76,13 @@ class Display(QtGui.QMainWindow):
 
         self.statusBar()
 
-        mainMenu = self.menuBar()
-        fileMenu = mainMenu.addMenu("&file")
-        graph_menu = mainMenu.addMenu('&Reduced Represenation')
+        mainmenu = self.menuBar()
+        filemenu = mainmenu.addMenu("&File")
+        graph_menu = mainmenu.addMenu('&Reduced Represenation')
         analysis_submenu = QtGui.QMenu("analysis settings", graph_menu)
-        #fileMenu.addAction(extractAction)
-        fileMenu.addAction(setPath)
+        # fileMenu.addAction(extractAction)
+        filemenu.addAction(setpath)
+        filemenu.addAction(refresh)
         analysis_submenu.addAction(select_max)
         analysis_submenu.addAction(select_min)
         analysis_submenu.addAction(select_mean)
@@ -80,24 +90,14 @@ class Display(QtGui.QMainWindow):
         analysis_submenu.addAction(select_total_intensity)
         graph_menu.addMenu(analysis_submenu)
         graph_menu.addAction(plt_action)
-        # self.home()
         self.show()
-
-    # def home(self):
-    #     btn = QtGui.QPushButton("Plot", self)
-    #
-    #     btn.clicked.connect(self.plot_analysis)
-    #     btn.resize(100, 100)
-    #     btn.move(100, 100)
-
-    def close_application(self):
-        print("application closed succesfully")
-        sys.exit()
 
     def set_path(self):
         popup = QtGui.QFileDialog()
         self.file_path = str(popup.getExistingDirectory())
-        print(self.file_path)
+        self.Tif._directory_name = self.file_path
+        self.Tif.get_file_list()
+        self.update_data(self.Tif.pic_list, self.Tif.file_list)
 
     def set_type_mean(self):
         self.analysis_type = "mean"
@@ -140,8 +140,28 @@ class Display(QtGui.QMainWindow):
             err_msg_analysis.setText("You did not specify an analysis type")
             err_msg_analysis.setInformativeText("please go to the menu and select an analysis type before proceeding")
             err_msg_analysis.setStandardButtons(QtGui.QMessageBox.Close)
-            #err_msg_analysis.buttonClicked.connect(self.set_path)
+            # err_msg_analysis.buttonClicked.connect(self.set_path)
             err_msg_analysis.exec_()
+
+    def refresh(self):
+        new_file_names, new_data = self.Tif.get_new_files()
+        if len(new_file_names) == 0:
+            print("No new .tif files found")
+        else:
+            self.update_data(new_data, new_file_names)
+
+    def update_data(self, data_list, file_list):
+        # This method updates the data in the image displayer taking in some new data list and some other
+        # list that is normally the list of File names
+        old_length = len(self.key_list)
+        for file in file_list:
+            self.key_list.append(file)
+        for data in data_list:
+            self.data_list.append(data)
+        for i in range(old_length, len(self.key_list)):
+            self._main_window._messenger._view._data_dict[self.key_list[i]] = self.data_list[i]
+        self._main_window._messenger._ctrl_widget._slider_img.setMaximum(len(self.key_list) - 1)
+        self._main_window._messenger._ctrl_widget._spin_img.setMaximum(len(self.key_list) - 1)
 
 
 def main():

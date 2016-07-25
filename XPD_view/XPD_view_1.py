@@ -30,13 +30,9 @@ class Display(QtGui.QMainWindow):
         self.analysis_type = None
         self.file_path = None
 
-<<<<<<< HEAD
-        self.key_list, self.data_list = data_gen(1000)
-=======
         self.key_list = ['Home']
         self.data_list = data_gen(1)
         self.Tif = TifFileFinder()
->>>>>>> 5bee5cd1113c14672c684056529061429b08f114
 
         self._main_window = CrossSectionMainWindow(data_list=self.data_list,
                                                    key_list=self.key_list,
@@ -76,11 +72,11 @@ class Display(QtGui.QMainWindow):
 
         self.statusBar()
 
+        # This sets up all of the menu widgets that are used in the GUI
         mainmenu = self.menuBar()
         filemenu = mainmenu.addMenu("&File")
         graph_menu = mainmenu.addMenu('&Reduced Represenation')
         analysis_submenu = QtGui.QMenu("analysis settings", graph_menu)
-        # fileMenu.addAction(extractAction)
         filemenu.addAction(setpath)
         filemenu.addAction(refresh)
         analysis_submenu.addAction(select_max)
@@ -90,6 +86,8 @@ class Display(QtGui.QMainWindow):
         analysis_submenu.addAction(select_total_intensity)
         graph_menu.addMenu(analysis_submenu)
         graph_menu.addAction(plt_action)
+
+        self._main_window._messenger._ctrl_widget._spin_img.valueChanged.connect(self.thingy)
         self.show()
 
     def set_path(self):
@@ -162,6 +160,9 @@ class Display(QtGui.QMainWindow):
             self._main_window._messenger._view._data_dict[self.key_list[i]] = self.data_list[i]
         self._main_window._messenger._ctrl_widget._slider_img.setMaximum(len(self.key_list) - 1)
         self._main_window._messenger._ctrl_widget._spin_img.setMaximum(len(self.key_list) - 1)
+
+    def thingy(self, val):
+        print(val)
 
 
 def main():

@@ -30,9 +30,13 @@ class Display(QtGui.QMainWindow):
         self.analysis_type = None
         self.file_path = None
 
+<<<<<<< HEAD
+        self.key_list, self.data_list = data_gen(1000)
+=======
         self.key_list = ['Home']
         self.data_list = data_gen(1)
         self.Tif = TifFileFinder()
+>>>>>>> 5bee5cd1113c14672c684056529061429b08f114
 
         self._main_window = CrossSectionMainWindow(data_list=self.data_list,
                                                    key_list=self.key_list,

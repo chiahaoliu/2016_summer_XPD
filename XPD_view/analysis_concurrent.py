@@ -177,4 +177,5 @@ class analysis_concurrent:
 
             y.append(func(img))
 
-        queue.put(y)
+        queue.put_nowait(y)
+        #queue.cancel_join_thread()

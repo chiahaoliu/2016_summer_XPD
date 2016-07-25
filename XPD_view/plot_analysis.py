@@ -62,7 +62,7 @@ class reducedRepPlot:
         """
         a = analysis_concurrent(self.y_start, self.y_stop, self.x_start, self.x_stop, self.selection)
         trunc_list = []
-        cpu_count = multiprocessing.cpu_count()
+        cpu_count = 10 #multiprocessing.cpu_count()
         temp_list = []
         for i in range(0, cpu_count):
 
@@ -82,6 +82,7 @@ class reducedRepPlot:
         x = range(0,len(self.tif_list))
         y = []
         q = multiprocessing.Queue()
+        #a = multiprocessing.Array()
         l = multiprocessing.Lock()
         #p = multiprocessing.Process(a.x_and_y_vals, args=(l,))
 
@@ -93,11 +94,12 @@ class reducedRepPlot:
             process.start()
 
         for process in process_list:
+            y.append(q.get())
             process.join()
 
 
-        for i in range(0,cpu_count):
-            y.append(q.get())
+        # for i in range(0,cpu_count):
+        #     y.append(q.get())
 
         y = self.selectionSort(y)
         flattened_y = [val for sublist in y for val in sublist]

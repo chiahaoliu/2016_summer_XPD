@@ -31,7 +31,7 @@ class Display(QtGui.QMainWindow):
         self.analysis_type = None
         self.file_path = None
 
-        self.key_list, self.data_list = data_gen(200)
+        self.key_list, self.data_list = data_gen(1000)
 
         self._main_window = CrossSectionMainWindow(data_list=self.data_list,
                                                    key_list=self.key_list,

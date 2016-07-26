@@ -4,8 +4,8 @@ This file will contain the code to create the XPD view GUI
 
 from xray_vision.qt_widgets import CrossSectionMainWindow
 from PyQt4 import QtGui, QtCore
-import sys
 import os
+import sys
 import numpy as np
 from Tif_File_Finder import TifFileFinder
 from plot_analysis import reducedRepPlot

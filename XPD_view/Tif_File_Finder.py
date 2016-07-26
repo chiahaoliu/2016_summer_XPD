@@ -36,7 +36,8 @@ class TifFileFinder(object):
         no1 = '.dark.tif'
         no2 = '.raw.tif'
         self.dir_fil.sort(key=lambda x: os.path.getmtime(self._directory_name + x))
-        new_file_list = [el for el in self.dir_fil if el.endswith('.tif') and not el.endswith(no1) or el.endswith(no2)]
+        new_file_list = [el for el in self.dir_fil
+                         if el.endswith('.tif') and not (el.endswith(no1) or el.endswith(no2))]
         need_read_files = []
         for i in new_file_list:
             add = True

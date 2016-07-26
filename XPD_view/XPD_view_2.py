@@ -21,7 +21,7 @@ def data_gen(length):
     return data
 
 
-class Display2(QtGui.QMainwindow):
+class Display2(QtGui.QMainWindow):
 
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
@@ -32,6 +32,30 @@ class Display2(QtGui.QMainwindow):
         self.key_list = ['Home']
         self.data_list = data_gen(1)
         self.Tif = TifFileFinder()
+
+        self.set_up_menu_bar()
+
+    def set_up_menu_bar(self):
+        # set path option
+        setpath = QtGui.QAction("&Set Directory", self)
+        setpath.setShortcut("Ctrl+O")
+        setpath.setStatusTip("Set image directory")
+        setpath.triggered.connect(self.set_path)
+
+        # sets up refresh button
+        refresh = QtGui.QAction("&Refresh Files", self)
+        refresh.setShortcut("Ctrl+R")
+        refresh.setStatusTip("Look for new files in directory")
+        refresh.triggered.connect(self.refresh)
+
+        # This sets up all of the menu widgets that are used in the GUI
+        mainmenu = self.menuBar()
+        filemenu = mainmenu.addMenu("&File")
+        graph_menu = mainmenu.addMenu('&Reduced Representation')
+        color_maps = mainmenu.addMenu('&Color Maps')
+        refresh_option = mainmenu.addMenu('&Refresh')
+        filemenu.addAction(setpath)
+        refresh_option.addAction(refresh)
 
     def set_path(self):
         popup = QtGui.QFileDialog()
@@ -48,8 +72,8 @@ class Display2(QtGui.QMainwindow):
             self.update_data(new_data, new_file_names)
 
     def update_data(self, data_list, file_list):
-        # This method updates the data in the image displayer taking in some new data list and some other
-        # list that is normally the list of File names
+        # This method updates the data in the image display taking in some new data list and some other
+        # list that is normally the list of File names. The other list is represented as the new key names.
         old_length = len(self.key_list)
         for file in file_list:
             self.key_list.append(file)
@@ -59,3 +83,11 @@ class Display2(QtGui.QMainwindow):
             self._main_window._messenger._view._data_dict[self.key_list[i]] = self.data_list[i]
         self._main_window._messenger._ctrl_widget._slider_img.setMaximum(len(self.key_list) - 1)
         self._main_window._messenger._ctrl_widget._spin_img.setMaximum(len(self.key_list) - 1)
+
+
+def main():
+    app = QtGui.QApplication(sys.argv)
+    viewer = Display2()
+    viewer.show()
+    sys.exit(app.exec_())
+main()

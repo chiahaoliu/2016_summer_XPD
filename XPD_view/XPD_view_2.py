@@ -8,6 +8,7 @@ import sys
 import numpy as np
 from Tif_File_Finder import TifFileFinder
 from plot_analysis import reducedRepPlot
+from xray_vision.messenger.mpl.cross_section_2d import CrossSection2DMessenger
 
 
 def data_gen(length):
@@ -28,11 +29,30 @@ class Display2(QtGui.QMainWindow):
         self.setWindowTitle('XPD View')
         self.analysis_type = None
         self.file_path = None
-
         self.key_list = ['Home']
         self.data_list = data_gen(1)
         self.Tif = TifFileFinder()
+        # These commands initialize the 2D cross section widget to draw itself
+        self.messenger = CrossSection2DMessenger(data_list=self.data_list,
+                                                 key_list=self.key_list)
+        self.ctrls = self.messenger._ctrl_widget
+        self.ctrls.set_image_intensity_behavior('full range')
+        self.messenger.sl_update_image(0)
 
+        # This makes the layout for the main window
+        self.frame = QtGui.QFrame()
+        self.main_layout = QtGui.QVBoxLayout()
+        self.frame.setLayout(self.main_layout)
+        self.setCentralWidget(self.frame)
+        self.display = self.messenger._display
+        self.display_box = QtGui.QHBoxLayout()
+        self.display_box.addWidget(self.display)
+        self.tools_box = QtGui.QHBoxLayout()
+        self.main_layout.addLayout(self.display_box)
+        self.main_layout.addLayout(self.tools_box)
+
+        # These methods will set up the menu bars and the tool bars
+        # self.set_up_tool_bar()
         self.set_up_menu_bar()
 
     def set_up_menu_bar(self):
@@ -52,10 +72,12 @@ class Display2(QtGui.QMainWindow):
         mainmenu = self.menuBar()
         filemenu = mainmenu.addMenu("&File")
         graph_menu = mainmenu.addMenu('&Reduced Representation')
-        color_maps = mainmenu.addMenu('&Color Maps')
         refresh_option = mainmenu.addMenu('&Refresh')
         filemenu.addAction(setpath)
         refresh_option.addAction(refresh)
+
+    # def set_up_tool_bar(self):
+        # self.tools_box.addWidget(self.ctrls.)
 
     def set_path(self):
         popup = QtGui.QFileDialog()
@@ -80,9 +102,9 @@ class Display2(QtGui.QMainWindow):
         for data in data_list:
             self.data_list.append(data)
         for i in range(old_length, len(self.key_list)):
-            self._main_window._messenger._view._data_dict[self.key_list[i]] = self.data_list[i]
-        self._main_window._messenger._ctrl_widget._slider_img.setMaximum(len(self.key_list) - 1)
-        self._main_window._messenger._ctrl_widget._spin_img.setMaximum(len(self.key_list) - 1)
+            self.messenger._view._data_dict[self.key_list[i]] = self.data_list[i]
+        self.messenger._ctrl_widget._slider_img.setMaximum(len(self.key_list) - 1)
+        self.messenger._ctrl_widget._spin_img.setMaximum(len(self.key_list) - 1)
 
 
 def main():

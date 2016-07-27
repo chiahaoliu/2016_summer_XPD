@@ -65,26 +65,31 @@ class Display2(QtGui.QMainWindow):
         setpath.setStatusTip("Set image directory")
         setpath.triggered.connect(self.set_path)
 
-        # sets up refresh button
-        refresh = QtGui.QAction("&Refresh Files", self)
-        refresh.setShortcut("Ctrl+R")
-        refresh.setStatusTip("Look for new files in directory")
-        refresh.triggered.connect(self.refresh)
+        # sets up menu refresh option
+        refresh_path = QtGui.QAction('&Refresh', self)
+        refresh_path.setShortcut('Ctrl+R')
+        refresh_path.triggered.connect(self.refresh)
 
         # This sets up all of the menu widgets that are used in the GUI
         mainmenu = self.menuBar()
         filemenu = mainmenu.addMenu("&File")
         graph_menu = mainmenu.addMenu('&Reduced Representation')
-        refresh_option = mainmenu.addMenu('&Refresh')
         filemenu.addAction(setpath)
-        refresh_option.addAction(refresh)
+        filemenu.addAction(refresh_path)
 
     def set_up_tool_bar(self):
         # All these commands will extract the desired widgets from x-ray_vision for our purposes
         self.tools_box.addWidget(self.ctrls._slider_img)
         self.tools_box.addWidget(self.ctrls._spin_img)
         self.tools_box.addWidget(self.ctrls._cm_cb)
-        # self.tools_box.addWidget(self.ctrls.)
+        self.tools_box.addWidget(self.ctrls._cmbbox_intensity_behavior)
+        self.tools_box.addWidget(self.ctrls._spin_min)
+        self.tools_box.addWidget(self.ctrls._spin_max)
+
+        # This makes the refresh button
+        refresh = QtGui.QPushButton('Refresh', self)
+        refresh.clicked.connect(self.refresh)
+        self.tools_box.addWidget(refresh)
 
     def set_path(self):
         popup = QtGui.QFileDialog()

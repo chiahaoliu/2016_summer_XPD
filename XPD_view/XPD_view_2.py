@@ -96,6 +96,7 @@ class Display2(QtGui.QMainWindow):
         # This makes the Label that is used to display the current key name
         self.name_label.setText('Current File: '+self.key_list[0])
         self.tools_box.addWidget(self.name_label)
+        # This makes sure that the display is updated when the image is changed
         self.ctrls._spin_img.valueChanged.connect(self.change_display_name)
 
         # This makes the refresh button
@@ -134,9 +135,9 @@ class Display2(QtGui.QMainWindow):
         self.ctrls._slider_img.setMaximum(len(self.key_list) - 1)
         self.ctrls._spin_img.setMaximum(len(self.key_list) - 1)
 
-    def change_display_name(self, val):
+    def change_display_name(self, index_val):
         # This is how the display updates the current name displayed
-        self.name_label.setText("Current: " + self.key_list[val])
+        self.name_label.setText("Current: " + self.key_list[index_val])
 
 
 def main():

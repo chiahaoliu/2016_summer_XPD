@@ -1,5 +1,6 @@
 """
-This file is meant to test the module to ensure it works
+This file is meant to test the module to ensure it the ROI class
+works as it should
 """
 
 from roi.roi_definer import ROI

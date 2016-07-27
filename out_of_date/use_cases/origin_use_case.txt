@@ -1,0 +1,26 @@
+This file is notes on some of the original instructions Eric gave
+Caleb Duff for the purposes of this project. They will be presented in the
+sense of a use case scenario.
+
+1. User starts ipython session
+2. User calls command to pull up visualization software
+3. User tells visualization software where to find .tif files that will be
+   viewed
+4. Software processes .tif files into clear images for the user
+5. User view initial .tif image
+6. User has options to set contrast on image, this stays consistent for all
+   images
+7. User has option to change color scheme between a few options to make image
+   clearer
+8. User has option to zoom in a section of image that is then propagated to
+   other images
+9. User can move zoom region around the image, this propagates as well
+   throughout the other images
+10. User has option to slide through all of the images with slider widget
+11. User has option to type in specific image index to go there
+12. User has ability to switch between images using forward and back buttons
+13. User has option to pull up reduced representation of data according to some
+    common statistical parameter
+14. User has option to view Azimuthal integration pattern of .tif data on
+    1-D plot with original .tif image side by side
+15. User closes program

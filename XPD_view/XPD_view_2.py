@@ -55,6 +55,7 @@ class Display2(QtGui.QMainWindow):
         self.main_layout.addLayout(self.tools_box)
 
         # These methods will set up the menu bars and the tool bars
+        self.name_label = QtGui.QLabel()
         self.set_up_tool_bar()
         self.set_up_menu_bar()
 
@@ -83,8 +84,19 @@ class Display2(QtGui.QMainWindow):
         self.tools_box.addWidget(self.ctrls._spin_img)
         self.tools_box.addWidget(self.ctrls._cm_cb)
         self.tools_box.addWidget(self.ctrls._cmbbox_intensity_behavior)
+        min_label = QtGui.QLabel()
+        min_label.setText('Int Min')
+        self.tools_box.addWidget(min_label)
         self.tools_box.addWidget(self.ctrls._spin_min)
+        max_label = QtGui.QLabel()
+        max_label.setText('Int Max')
+        self.tools_box.addWidget(max_label)
         self.tools_box.addWidget(self.ctrls._spin_max)
+
+        # This makes the Label that is used to display the current key name
+        self.name_label.setText('Current File: '+self.key_list[0])
+        self.tools_box.addWidget(self.name_label)
+        self.ctrls._spin_img.valueChanged.connect(self.change_display_name)
 
         # This makes the refresh button
         refresh = QtGui.QPushButton('Refresh', self)
@@ -121,6 +133,10 @@ class Display2(QtGui.QMainWindow):
             self.data_dict[self.key_list[i]] = data_list[i - old_length]
         self.ctrls._slider_img.setMaximum(len(self.key_list) - 1)
         self.ctrls._spin_img.setMaximum(len(self.key_list) - 1)
+
+    def change_display_name(self, val):
+        # This is how the display updates the current name displayed
+        self.name_label.setText("Current: " + self.key_list[val])
 
 
 def main():

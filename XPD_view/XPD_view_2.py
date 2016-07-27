@@ -12,14 +12,23 @@ from xray_vision.messenger.mpl.cross_section_2d import CrossSection2DMessenger
 
 
 def data_gen(length):
-    x, y = [_ * 2 * np.pi / 200 for _ in np.ogrid[-200:200, -200:200]]
-    rep = int(np.sqrt(length))
+    # This will generate circular looking data
+    x_length = 100
+    y_length = 100
     data = []
+    keys = []
     for idx in range(length):
-        kx = idx // rep + 1
-        ky = idx % rep
-        data.append(np.sin(kx * x) * np.cos(ky * y) + 1.05)
-    return data
+        array_style = np.zeros((x_length, y_length))
+        keys.append(str(idx))
+        for x in range(x_length):
+            for y in range(y_length):
+                height = idx + 1
+                if x == int(x_length/2) and y == int(y_length/2):
+                    array_style[x][y] = 0
+                else:
+                    array_style[x][y] = height/np.sqrt((x-int(x_length/2))**2+(y-int(y_length/2))**2)
+        data.append(array_style)
+    return data, keys
 
 
 class Display2(QtGui.QMainWindow):
@@ -30,8 +39,8 @@ class Display2(QtGui.QMainWindow):
         self.setWindowTitle('XPD View')
         self.analysis_type = None
         self.file_path = None
-        self.key_list = ['Home']
-        data_list = data_gen(1)
+        # self.key_list = ['Home']
+        data_list, self.key_list = data_gen(1)
         self.Tif = TifFileFinder()
 
         # These commands initialize the 2D cross section widget to draw itself
@@ -112,10 +121,13 @@ class Display2(QtGui.QMainWindow):
         if len(self.Tif.pic_list) == 0:
             print('No .tif files in directory')
         else:
-            self.update_data(self.Tif.pic_list, self.Tif.file_list)
-            # This will make the home page no longer an option so that user does not have to see it any more
-            self.ctrls._slider_img.setMinimum(1)
-            self.ctrls._spin_img.setMinimum(1)
+            x = self.key_list[0]
+            if x == 'Home' or x == '0':
+                del self.data_dict[self.key_list[0]]
+                self.key_list.remove(x)
+                self.update_data(self.Tif.pic_list, self.Tif.file_list)
+            else:
+                self.update_data(self.Tif.pic_list, self.Tif.file_list)
 
     def refresh(self):
         new_file_names, new_data = self.Tif.get_new_files()

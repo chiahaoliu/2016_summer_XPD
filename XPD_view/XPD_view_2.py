@@ -25,19 +25,22 @@ def data_gen(length):
 class Display2(QtGui.QMainWindow):
 
     def __init__(self):
+        # This is just setting up some of the beginning variables
         QtGui.QMainWindow.__init__(self)
         self.setWindowTitle('XPD View')
         self.analysis_type = None
         self.file_path = None
         self.key_list = ['Home']
-        self.data_list = data_gen(1)
+        data_list = data_gen(1)
         self.Tif = TifFileFinder()
+
         # These commands initialize the 2D cross section widget to draw itself
-        self.messenger = CrossSection2DMessenger(data_list=self.data_list,
+        self.messenger = CrossSection2DMessenger(data_list=data_list,
                                                  key_list=self.key_list)
         self.ctrls = self.messenger._ctrl_widget
         self.ctrls.set_image_intensity_behavior('full range')
         self.messenger.sl_update_image(0)
+        self.data_dict = self.messenger._view._data_dict
 
         # This makes the layout for the main window
         self.frame = QtGui.QFrame()
@@ -52,7 +55,7 @@ class Display2(QtGui.QMainWindow):
         self.main_layout.addLayout(self.tools_box)
 
         # These methods will set up the menu bars and the tool bars
-        # self.set_up_tool_bar()
+        self.set_up_tool_bar()
         self.set_up_menu_bar()
 
     def set_up_menu_bar(self):
@@ -76,7 +79,11 @@ class Display2(QtGui.QMainWindow):
         filemenu.addAction(setpath)
         refresh_option.addAction(refresh)
 
-    # def set_up_tool_bar(self):
+    def set_up_tool_bar(self):
+        # All these commands will extract the desired widgets from x-ray_vision for our purposes
+        self.tools_box.addWidget(self.ctrls._slider_img)
+        self.tools_box.addWidget(self.ctrls._spin_img)
+        self.tools_box.addWidget(self.ctrls._cm_cb)
         # self.tools_box.addWidget(self.ctrls.)
 
     def set_path(self):
@@ -84,7 +91,13 @@ class Display2(QtGui.QMainWindow):
         self.file_path = str(popup.getExistingDirectory())
         self.Tif._directory_name = self.file_path
         self.Tif.get_file_list()
-        self.update_data(self.Tif.pic_list, self.Tif.file_list)
+        if len(self.Tif.pic_list) == 0:
+            print('No .tif files in directory')
+        else:
+            self.update_data(self.Tif.pic_list, self.Tif.file_list)
+            # This will make the home page no longer an option so that user does not have to see it any more
+            self.ctrls._slider_img.setMinimum(1)
+            self.ctrls._spin_img.setMinimum(1)
 
     def refresh(self):
         new_file_names, new_data = self.Tif.get_new_files()
@@ -99,12 +112,10 @@ class Display2(QtGui.QMainWindow):
         old_length = len(self.key_list)
         for file in file_list:
             self.key_list.append(file)
-        for data in data_list:
-            self.data_list.append(data)
         for i in range(old_length, len(self.key_list)):
-            self.messenger._view._data_dict[self.key_list[i]] = self.data_list[i]
-        self.messenger._ctrl_widget._slider_img.setMaximum(len(self.key_list) - 1)
-        self.messenger._ctrl_widget._spin_img.setMaximum(len(self.key_list) - 1)
+            self.data_dict[self.key_list[i]] = data_list[i - old_length]
+        self.ctrls._slider_img.setMaximum(len(self.key_list) - 1)
+        self.ctrls._spin_img.setMaximum(len(self.key_list) - 1)
 
 
 def main():
